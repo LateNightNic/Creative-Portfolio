@@ -4,7 +4,7 @@
 
 A single-page, OS-style creative portfolio for **Nic Milligan**. The interface presents as a stylised desktop environment where the user clicks animated icons to open pop-up windows containing portfolio content. The site is intentionally non-scrolling on desktop — the desktop *is* the page.
 
-**Domain:** TBD
+**Domain:** nicmilligan.com
 **Owner:** Nic Milligan
 **Repo:** `Creative-Portfolio`
 **Stack:** Vanilla HTML / CSS / JavaScript (no framework)
@@ -50,7 +50,7 @@ Each app is a pop-up window that opens over the desktop. Windows can be **closed
 
 #### App 1: My Projects
 - Opens a single window listing all projects
-- List shows project thumbnail, title, year, and short description
+- List shows project thumbnail, title, commerical or personal tag, and short description
 - Clicking a project **replaces the contents of the same window** with a detail view
 - Detail view includes: hero image/video, problem statement, approach, outcome, visuals, and a "← Back to projects" button that returns to the list
 - Project content is authored as Markdown files in `/content/projects/` and rendered into the window at build time

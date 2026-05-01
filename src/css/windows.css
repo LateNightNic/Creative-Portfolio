@@ -1,0 +1,115 @@
+/* ── Window container ──────────────────────────────────── */
+
+#windows {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ── Window chrome ─────────────────────────────────────── */
+
+.window {
+  position: absolute;
+  background: var(--white);
+  border: var(--window-border);
+  box-shadow: var(--window-shadow);
+  min-width: 18rem;
+  width: 32rem;
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100vh - var(--taskbar-height) - 2rem);
+  display: flex;
+  flex-direction: column;
+  pointer-events: all;
+}
+
+.window__titlebar {
+  flex-shrink: 0;
+  height: 2rem;
+  background: var(--black);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.25rem 0 0.75rem;
+  cursor: grab;
+  user-select: none;
+}
+
+.window__titlebar:active {
+  cursor: grabbing;
+}
+
+.window__title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.window__close {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1.125rem;
+  line-height: 1;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.window__close:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+.window__close:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: -2px;
+}
+
+.window__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem;
+  overscroll-behavior: contain;
+}
+
+.window__content p {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.window__content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Open animation ────────────────────────────────────── */
+
+@keyframes windowOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.window.is-opening {
+  animation: windowOpen var(--duration-window) var(--ease-window) forwards;
+  transform-origin: center top;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .window.is-opening {
+    animation: none;
+  }
+}

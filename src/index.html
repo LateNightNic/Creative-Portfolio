@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nic Milligan Creative</title>
+  <meta name="description" content="The creative portfolio of Nic Milligan — design, motion, and interactive work.">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/desktop.css">
+  <link rel="stylesheet" href="css/windows.css">
+</head>
+<body>
+
+  <header class="taskbar" role="banner">
+    <button class="taskbar__title" aria-label="Close all windows and return to desktop">
+      Nic Milligan Creative
+    </button>
+    <nav class="taskbar__socials" aria-label="Social links">
+      <a class="taskbar__social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+      <a class="taskbar__social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
+      <a class="taskbar__social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LI</a>
+      <a class="taskbar__social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="X">X</a>
+    </nav>
+  </header>
+
+  <main class="desktop" aria-label="Desktop">
+    <div class="icon-grid" role="list">
+
+      <button class="desktop-icon" data-app="projects" role="listitem" aria-label="Open My Projects">
+        <div class="desktop-icon__graphic" aria-hidden="true"></div>
+        <span class="desktop-icon__label">My Projects</span>
+      </button>
+
+      <button class="desktop-icon" data-app="playground" role="listitem" aria-label="Open Playground">
+        <div class="desktop-icon__graphic" aria-hidden="true"></div>
+        <span class="desktop-icon__label">Playground</span>
+      </button>
+
+      <button class="desktop-icon" data-app="about" role="listitem" aria-label="Open About Me">
+        <div class="desktop-icon__graphic" aria-hidden="true"></div>
+        <span class="desktop-icon__label">About Me</span>
+      </button>
+
+      <button class="desktop-icon" data-app="resume" role="listitem" aria-label="Open Resume">
+        <div class="desktop-icon__graphic" aria-hidden="true"></div>
+        <span class="desktop-icon__label">Resume</span>
+      </button>
+
+      <button class="desktop-icon" data-app="contact" role="listitem" aria-label="Open Contact">
+        <div class="desktop-icon__graphic" aria-hidden="true"></div>
+        <span class="desktop-icon__label">Contact</span>
+      </button>
+
+      <button class="desktop-icon" data-app="blog" role="listitem" aria-label="Open My Blog">
+        <div class="desktop-icon__graphic" aria-hidden="true"></div>
+        <span class="desktop-icon__label">My Blog</span>
+      </button>
+
+    </div>
+  </main>
+
+  <div id="windows" aria-live="polite"></div>
+
+  <template id="window-template">
+    <div class="window" role="dialog" aria-modal="true">
+      <div class="window__titlebar">
+        <span class="window__title"></span>
+        <button class="window__close" aria-label="Close window">&times;</button>
+      </div>
+      <div class="window__content"></div>
+    </div>
+  </template>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

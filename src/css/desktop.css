@@ -1,0 +1,211 @@
+/* ── Taskbar ───────────────────────────────────────────── */
+
+.taskbar {
+  flex-shrink: 0;
+  height: var(--taskbar-height);
+  background: var(--black);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  gap: 1rem;
+  z-index: 9999;
+  position: relative;
+}
+
+.taskbar__title {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.25rem 0;
+}
+
+.taskbar__title:focus-visible {
+  outline-color: var(--white);
+}
+
+.taskbar__socials {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.taskbar__social-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  opacity: 0.7;
+  transition: opacity 120ms;
+  padding: 0.25rem 0;
+}
+
+.taskbar__social-link:hover {
+  opacity: 1;
+}
+
+.taskbar__social-link:focus-visible {
+  outline-color: var(--white);
+}
+
+/* ── Desktop ───────────────────────────────────────────── */
+
+.desktop {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+/* ── Icon grid ─────────────────────────────────────────── */
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 5.5rem);
+  grid-template-rows: repeat(4, auto);
+  grid-auto-flow: column;
+  gap: 1.5rem 1rem;
+}
+
+/* ── Desktop icon ──────────────────────────────────────── */
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0;
+  cursor: pointer;
+  width: 5.5rem;
+  color: var(--black);
+}
+
+.desktop-icon__graphic {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: var(--window-border);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 120ms, color 120ms;
+  position: relative;
+}
+
+/* Placeholder geometric mark per icon */
+.desktop-icon[data-app="projects"] .desktop-icon__graphic::before {
+  content: '';
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: var(--black);
+  box-shadow: 0.5rem 0.5rem 0 var(--black);
+  position: relative;
+  top: -0.25rem;
+  left: -0.25rem;
+}
+
+.desktop-icon[data-app="playground"] .desktop-icon__graphic::before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 0.7rem solid transparent;
+  border-right: 0.7rem solid transparent;
+  border-bottom: 1.25rem solid var(--black);
+}
+
+.desktop-icon[data-app="about"] .desktop-icon__graphic::before {
+  content: '';
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 2px solid var(--black);
+}
+
+.desktop-icon[data-app="resume"] .desktop-icon__graphic::before {
+  content: '';
+  display: block;
+  width: 1.1rem;
+  height: 1.4rem;
+  border: 2px solid var(--black);
+  box-shadow:
+    inset 0 0.3rem 0 0 var(--black),
+    inset 0 0.55rem 0 0 var(--white);
+}
+
+.desktop-icon[data-app="contact"] .desktop-icon__graphic::before {
+  content: '';
+  display: block;
+  width: 1.4rem;
+  height: 1rem;
+  border: 2px solid var(--black);
+  position: relative;
+}
+
+.desktop-icon[data-app="blog"] .desktop-icon__graphic::before {
+  content: '';
+  display: block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-left: 2px solid var(--black);
+  border-bottom: 2px solid var(--black);
+  box-shadow:
+    0 -0.45rem 0 0 var(--black),
+    0 -0.9rem 0 0 var(--black);
+}
+
+/* Hover / active states */
+.desktop-icon:hover .desktop-icon__graphic,
+.desktop-icon:focus-visible .desktop-icon__graphic {
+  background: var(--black);
+}
+
+.desktop-icon:hover .desktop-icon__graphic::before,
+.desktop-icon:focus-visible .desktop-icon__graphic::before {
+  border-color: var(--white);
+  background-color: var(--white);
+  box-shadow: none;
+  filter: invert(1);
+}
+
+/* Triangle icon (playground) needs special invert handling */
+.desktop-icon[data-app="playground"]:hover .desktop-icon__graphic::before,
+.desktop-icon[data-app="playground"]:focus-visible .desktop-icon__graphic::before {
+  border-bottom-color: var(--white);
+  filter: none;
+}
+
+.desktop-icon:active .desktop-icon__graphic {
+  transform: scale(0.95);
+}
+
+.desktop-icon__label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.3;
+  color: var(--black);
+  letter-spacing: 0.01em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop-icon__graphic,
+  .desktop-icon__graphic::before {
+    transition: none;
+  }
+
+  .desktop-icon:active .desktop-icon__graphic {
+    transform: none;
+  }
+}

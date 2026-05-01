@@ -61,7 +61,7 @@
   position: relative;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: flex-end;
   padding: 1rem;
 }
 
@@ -69,15 +69,17 @@
 
 .icon-grid {
   display: grid;
-  grid-template-columns: repeat(2, 5.5rem);
+  grid-template-columns: repeat(2, 7rem);
   grid-template-rows: repeat(4, auto);
   grid-auto-flow: column;
+  direction: rtl;
   gap: 1.5rem 1rem;
 }
 
 /* ── Desktop icon ──────────────────────────────────────── */
 
 .desktop-icon {
+  direction: ltr;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,13 +87,13 @@
   padding: 0.5rem;
   border-radius: 0;
   cursor: pointer;
-  width: 5.5rem;
+  width: 7rem;
   color: var(--black);
 }
 
 .desktop-icon__graphic {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 6rem;
+  height: 6rem;
   border: var(--window-border);
   background: var(--white);
   display: flex;
@@ -105,13 +107,13 @@
 .desktop-icon[data-app="projects"] .desktop-icon__graphic::before {
   content: '';
   display: block;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 2rem;
+  height: 2rem;
   background: var(--black);
-  box-shadow: 0.5rem 0.5rem 0 var(--black);
+  box-shadow: 0.75rem 0.75rem 0 var(--black);
   position: relative;
-  top: -0.25rem;
-  left: -0.25rem;
+  top: -0.375rem;
+  left: -0.375rem;
 }
 
 .desktop-icon[data-app="playground"] .desktop-icon__graphic::before {
@@ -119,16 +121,16 @@
   display: block;
   width: 0;
   height: 0;
-  border-left: 0.7rem solid transparent;
-  border-right: 0.7rem solid transparent;
-  border-bottom: 1.25rem solid var(--black);
+  border-left: 1.125rem solid transparent;
+  border-right: 1.125rem solid transparent;
+  border-bottom: 2rem solid var(--black);
 }
 
 .desktop-icon[data-app="about"] .desktop-icon__graphic::before {
   content: '';
   display: block;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   border: 2px solid var(--black);
 }
@@ -136,19 +138,19 @@
 .desktop-icon[data-app="resume"] .desktop-icon__graphic::before {
   content: '';
   display: block;
-  width: 1.1rem;
-  height: 1.4rem;
+  width: 1.875rem;
+  height: 2.25rem;
   border: 2px solid var(--black);
   box-shadow:
-    inset 0 0.3rem 0 0 var(--black),
-    inset 0 0.55rem 0 0 var(--white);
+    inset 0 0.5rem 0 0 var(--black),
+    inset 0 0.9rem 0 0 var(--white);
 }
 
 .desktop-icon[data-app="contact"] .desktop-icon__graphic::before {
   content: '';
   display: block;
-  width: 1.4rem;
-  height: 1rem;
+  width: 2.25rem;
+  height: 1.75rem;
   border: 2px solid var(--black);
   position: relative;
 }
@@ -156,13 +158,13 @@
 .desktop-icon[data-app="blog"] .desktop-icon__graphic::before {
   content: '';
   display: block;
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 2rem;
+  height: 2rem;
   border-left: 2px solid var(--black);
   border-bottom: 2px solid var(--black);
   box-shadow:
-    0 -0.45rem 0 0 var(--black),
-    0 -0.9rem 0 0 var(--black);
+    0 -0.75rem 0 0 var(--black),
+    0 -1.5rem 0 0 var(--black);
 }
 
 /* Hover / active states */
@@ -207,5 +209,68 @@
 
   .desktop-icon:active .desktop-icon__graphic {
     transform: none;
+  }
+}
+
+/* ── Mobile ────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .desktop {
+    justify-content: center;
+    padding: 1.5rem 1rem;
+  }
+
+  .icon-grid {
+    grid-template-columns: repeat(2, 9rem);
+    gap: 1.5rem 1rem;
+  }
+
+  .desktop-icon {
+    width: 9rem;
+  }
+
+  .desktop-icon__graphic {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .desktop-icon[data-app="projects"] .desktop-icon__graphic::before {
+    width: 2.75rem;
+    height: 2.75rem;
+    box-shadow: 1rem 1rem 0 var(--black);
+    top: -0.5rem;
+    left: -0.5rem;
+  }
+
+  .desktop-icon[data-app="playground"] .desktop-icon__graphic::before {
+    border-left-width: 1.5rem;
+    border-right-width: 1.5rem;
+    border-bottom-width: 2.75rem;
+  }
+
+  .desktop-icon[data-app="about"] .desktop-icon__graphic::before {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .desktop-icon[data-app="resume"] .desktop-icon__graphic::before {
+    width: 2.5rem;
+    height: 3rem;
+    box-shadow:
+      inset 0 0.65rem 0 0 var(--black),
+      inset 0 1.25rem 0 0 var(--white);
+  }
+
+  .desktop-icon[data-app="contact"] .desktop-icon__graphic::before {
+    width: 3rem;
+    height: 2.25rem;
+  }
+
+  .desktop-icon[data-app="blog"] .desktop-icon__graphic::before {
+    width: 2.75rem;
+    height: 2.75rem;
+    box-shadow:
+      0 -1rem 0 0 var(--black),
+      0 -2rem 0 0 var(--black);
   }
 }

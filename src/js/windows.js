@@ -36,6 +36,7 @@ export class WindowManager {
     win.addEventListener('mousedown', () => this.bringToFront(win));
 
     this._makeDraggable(win);
+    this._makeResizable(win);
     this._trapFocus(win);
 
     if (!prefersReducedMotion()) {
@@ -109,6 +110,44 @@ export class WindowManager {
       document.addEventListener('mouseup', onUp);
       e.preventDefault();
     });
+  }
+
+  _makeResizable(win) {
+    const MIN_W = 320;
+    const MIN_H = 240;
+
+    const startResize = (e, resizeW, resizeH) => {
+      const startX = e.clientX;
+      const startY = e.clientY;
+      const startW = win.offsetWidth;
+      const startH = win.offsetHeight;
+
+      const onMove = (ev) => {
+        if (resizeW) {
+          win.style.width = `${Math.max(MIN_W, startW + ev.clientX - startX)}px`;
+        }
+        if (resizeH) {
+          win.style.height = `${Math.max(MIN_H, startH + ev.clientY - startY)}px`;
+        }
+      };
+
+      const onUp = () => {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+        document.body.style.userSelect = '';
+        document.body.style.cursor = '';
+      };
+
+      document.body.style.userSelect = 'none';
+      document.body.style.cursor = resizeW && resizeH ? 'nwse-resize' : resizeW ? 'ew-resize' : 'ns-resize';
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+      e.preventDefault();
+    };
+
+    win.querySelector('.window__resize-right').addEventListener('mousedown', (e) => startResize(e, true, false));
+    win.querySelector('.window__resize-bottom').addEventListener('mousedown', (e) => startResize(e, false, true));
+    win.querySelector('.window__resize-corner').addEventListener('mousedown', (e) => startResize(e, true, true));
   }
 
   _trapFocus(win) {

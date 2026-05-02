@@ -6,8 +6,35 @@
   --gray-400: #999999;
   --gray-600: #555555;
 
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Typefaces */
+  --font-display: 'Alumni Sans', system-ui, sans-serif;
+  --font-body: 'Merriweather', Georgia, serif;
   --font-mono: 'Courier New', Courier, monospace;
+
+  /* Type scale — Major Third (×1.25), base 16px */
+  --text-xs:   0.75rem;   /* 12px — labels, captions, timestamps */
+  --text-sm:   0.875rem;  /* 14px — UI chrome, metadata */
+  --text-base: 1rem;      /* 16px — body copy */
+  --text-md:   1.25rem;   /* 20px — large body, intro paragraphs */
+  --text-lg:   1.5rem;    /* 24px — H3, section headings */
+  --text-xl:   2rem;      /* 32px — H2, window titles */
+  --text-2xl:  3rem;      /* 48px — H1 */
+  --text-3xl:  4rem;      /* 64px — display / hero */
+  --text-4xl:  5rem;      /* 80px — oversized display moments */
+
+  /* Line heights */
+  --leading-display:    1.05;  /* Alumni Sans ≥48px */
+  --leading-heading:    1.2;   /* Alumni Sans 24–40px */
+  --leading-subheading: 1.35;  /* Alumni Sans ≤20px */
+  --leading-body:       1.7;   /* Merriweather body (WCAG ≥1.5) */
+  --leading-ui:         1.4;   /* Small UI text */
+  --leading-code:       1.6;   /* Monospace */
+
+  /* Letter-spacing */
+  --tracking-display:  -0.03em; /* Alumni Sans ≥48px */
+  --tracking-heading:  -0.01em; /* Alumni Sans 24–40px */
+  --tracking-normal:    0em;    /* Alumni Sans ≤20px, Merriweather */
+  --tracking-caps:      0.08em; /* ALL-CAPS labels / UI chrome */
 
   --taskbar-height: 2.5rem;
 
@@ -19,8 +46,9 @@
 }
 
 body {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
   background: var(--white);
   color: var(--black);
   height: 100dvh;

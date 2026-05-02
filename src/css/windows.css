@@ -201,12 +201,12 @@
   position: absolute;
 }
 
-/* Invisible hit area — right edge */
+/* Invisible hit area — right edge (skips titlebar so it can't be grabbed accidentally) */
 .window__resize-right {
-  top: 0;
+  top: 2rem;
   right: -4px;
   width: 8px;
-  height: 100%;
+  height: calc(100% - 2rem);
   cursor: ew-resize;
 }
 
@@ -242,4 +242,13 @@
 
 .window__resize-corner:hover::before {
   border-color: var(--black);
+}
+
+/* Resize disabled on mobile — windows go fullscreen takeover instead */
+@media (max-width: 768px) {
+  .window__resize-right,
+  .window__resize-bottom,
+  .window__resize-corner {
+    display: none;
+  }
 }

@@ -2,9 +2,9 @@
 
 ## 1. Overview
 
-A single-page, OS-style creative portfolio for **Nic Milligan**. The interface presents as a stylised desktop environment where the user clicks animated icons to open pop-up windows containing portfolio content. The site is intentionally non-scrolling on desktop — the desktop *is* the page.
+An OS-style creative portfolio for **Nic Milligan**. The interface presents as a stylised desktop environment where the user clicks animated icons to open pop-up windows containing portfolio content. The desktop is non-scrolling — the desktop *is* the page — with content surfaced through draggable, resizable windows. This document describes the polished, finished release.
 
-**Domain:** nicmilligan.com
+**Domain:** TBD
 **Owner:** Nic Milligan
 **Repo:** `Creative-Portfolio`
 **Stack:** Vanilla HTML / CSS / JavaScript (no framework)
@@ -18,8 +18,10 @@ A single-page, OS-style creative portfolio for **Nic Milligan**. The interface p
 - Provide a clear path to contact / hire / follow
 - Rank organically and be cited by AI search for Nic's name and creative work
 
-### Success criteria (v1 launch)
-- All six desktop apps functional (Projects, Playground, About, Resume, Contact, Blog)
+### Success criteria (launch)
+- All six app windows functional (Projects, Playground, About, Resume, Contact, Blog); Reset control in the top bar
+- Windows are draggable and resizable; icons are repositionable via drag
+- Reset control returns the desktop to its default state (windows closed, icons at their default margin positions)
 - Site loads and is interactive in under 2 seconds on a mid-range mobile connection
 - Lighthouse scores: Performance ≥ 85, Accessibility ≥ 95, SEO ≥ 95
 - Works on Chrome, Safari, Firefox (current + previous major version)
@@ -40,17 +42,26 @@ The visual style for this site is intentionally undefined in this PRD — see fu
 A full-bleed canvas. No page scroll. Contains:
 
 - **Top bar** ("task bar"): site title `Nic Milligan Creative` on the left, social icons (Instagram, YouTube, LinkedIn, X) on the right
-- **Desktop icons** (clickable, animated via Rive): Projects, Playground, About Me, Resume, Contact, Blog
+- **Desktop icons** (clickable, animated via Rive): Projects, Playground, About Me, Resume, Contact, Blog — six icons
+- **Icon interactivity:** every desktop icon can be **repositioned via click-and-drag**. Icon positions are stored as a percentage of viewport width/height so they reflow proportionally when the browser is resized and never end up clipped off-canvas. Positions are held in memory for the current tab session only — refreshing or revisiting the site returns icons to their defaults. Positions are also cleared when Reset is triggered
 - **Background:** static or Rive-animated (TBD with art direction)
 - **Optional easter egg:** placeholder, location TBD
 
 ### 4.2 The Six Apps
 
-Each app is a pop-up window that opens over the desktop. Windows can be **closed**, and where it makes sense, **dragged** by their title bar. Resize and minimise behaviour is out of scope for v1 unless cheap to add.
+Each of the six desktop icons opens a pop-up window over the desktop. Windows can be **closed**, **dragged** by their title bar, and **resized**. Resize behaviour:
+
+- **Horizontal resize** via the right edge
+- **Vertical resize** via the bottom edge
+- **Both axes simultaneously** via a grab handle in the **bottom-right corner**
+- Window content is **pinned to the top-left** of the window — content does not reflow or rescale when the window is resized
+- If resizing crops the content, a **vertical scroll bar** appears inside the window
+- Minimum window dimensions enforced so the title bar and close control remain usable
+- Minimise and maximise behaviour is out of scope
 
 #### App 1: My Projects
 - Opens a single window listing all projects
-- List shows project thumbnail, title, commerical or personal tag, and short description
+- List shows project thumbnail, title, year, and short description
 - Clicking a project **replaces the contents of the same window** with a detail view
 - Detail view includes: hero image/video, problem statement, approach, outcome, visuals, and a "← Back to projects" button that returns to the list
 - Project content is authored as Markdown files in `/content/projects/` and rendered into the window at build time
@@ -76,7 +87,7 @@ Each app is a pop-up window that opens over the desktop. Windows can be **closed
 #### App 5: Contact
 - Opens a smaller window
 - Contains: email address (clickable mailto), social links repeated, optional contact form
-- Decision pending: simple mailto only for v1, or include a form (form requires Formspree/similar). **Recommend mailto-only for v1.**
+- Decision pending: simple mailto only, or include a form (form requires Formspree/similar). **Recommend mailto-only at launch unless form-driven inquiries become a priority.**
 
 #### App 6: My Blog
 - Opens a window with a list of blog posts (title, date, excerpt)
@@ -85,7 +96,8 @@ Each app is a pop-up window that opens over the desktop. Windows can be **closed
 - Posts authored as Markdown in `/content/blog/`
 
 ### 4.3 Top bar (taskbar)
-- Left: `Nic Milligan Creative` — clicking returns to a clean desktop (closes all windows)
+- Left: `Nic Milligan Creative` (site title, non-interactive) — and a **"Reset"** text button immediately beside it
+- **Reset button behaviour:** closes all open windows and returns all desktop icons to their default starting positions. Does not reload the page. Keyboard accessible (`Enter` / `Space`)
 - Right: Instagram, YouTube, LinkedIn, X icons (open in new tab)
 - Persistent across all desktop interactions
 - Optional: clock or status indicator (decide with art direction)
@@ -93,7 +105,17 @@ Each app is a pop-up window that opens over the desktop. Windows can be **closed
 ### 4.4 Window behaviour
 - Windows open with a small entrance animation (scale + fade — keep it tight, ~200ms)
 - Title bar shows app name and a close button
-- Drag-to-move via title bar (desktop only)
+- **Drag-to-move** via title bar (desktop only)
+- **Resize:**
+  - Right edge → horizontal resize
+  - Bottom edge → vertical resize
+  - Bottom-right corner handle → simultaneous horizontal + vertical resize
+  - Visible resize affordance on hover; cursor changes to `ew-resize`, `ns-resize`, or `nwse-resize` as appropriate
+  - Minimum width and height enforced (suggested: 320 × 240) so windows can't collapse below usable size
+- **Content layout inside windows:**
+  - Content is pinned to the **top-left** of the window
+  - Content does not reflow or rescale when the window is resized
+  - When the window is smaller than its content, a **vertical scroll bar** appears inside the window body (horizontal overflow hidden by default; revisit per-app if a specific layout demands it)
 - Click on background of an inactive window brings it to front (z-index management)
 - Multiple windows can be open simultaneously
 - Close on `Escape` key for the topmost window
@@ -101,7 +123,7 @@ Each app is a pop-up window that opens over the desktop. Windows can be **closed
 
 ### 4.5 Easter egg
 - Placeholder. Examples to consider: a hidden icon revealed on a specific cursor position, a Konami code trigger, a "trash can" that does something unexpected, a hidden audio clip
-- **Not required for v1 launch.** Decide post-launch.
+- **Not required for launch.** Decide alongside art direction.
 
 ### 4.6 SEO architecture (critical)
 
@@ -167,19 +189,20 @@ The desktop metaphor breaks on phones. The mobile fallback follows the **Cyan Ba
   - Renders to static HTML using a template
   - Generates `sitemap.xml` and `feed.xml`
   - Copies static assets to `/dist/`
-- **Dev server:** `npx serve` or similar — no Vite needed for v1
+- **Dev server:** `npx serve` or similar — no Vite needed at this scale
 - **Deployment:** push to `main` triggers Netlify/Vercel build
 - Add a bundler later only if complexity demands it
 
-## 10. Out of Scope for v1
+## 10. Out of Scope
 
 - CMS integration (content is Markdown in repo)
 - Authentication / login screen (we're not copying mitchivin's boot sequence)
-- Window resize / minimise / maximise
+- Window minimise / maximise
 - Multiple desktop "spaces" or multi-window workspace memory
+- Persisting icon positions or window state across sessions (in-memory only)
 - Comments on blog posts
 - Newsletter signup
-- Analytics dashboard (can add Plausible/GA4 if wanted, simple)
+- Analytics dashboard (can add Plausible/GA4 later if wanted)
 
 ## 11. Open Questions
 
@@ -189,7 +212,7 @@ The desktop metaphor breaks on phones. The mobile fallback follows the **Cyan Ba
 - [ ] Easter egg concept
 - [ ] Art direction (separate doc — `design.md`)
 - [ ] Copy voice and microcopy patterns (separate doc — `copywriting.md`)
-- [ ] Initial set of projects to feature in v1
+- [ ] Initial set of projects to feature at launch
 - [ ] Resume content
 - [ ] Bio + about copy
 
@@ -198,18 +221,20 @@ The desktop metaphor breaks on phones. The mobile fallback follows the **Cyan Ba
 Sessions should be built in this order. Each session ends with the work committed and reviewable.
 
 1. **Project scaffold** — folder structure, `index.html`, base CSS, build script skeleton
-2. **Static desktop layout** — top bar, icon grid (placeholder icons), no interactivity yet
+2. **Static desktop layout** — top bar (with Reset button), icon grid (six placeholder icons), no interactivity yet
 3. **Window system** — open/close/drag/z-index logic with one dummy app
-4. **About Me window** — first real content, validates the window pattern
-5. **Resume window** — second window, validates Markdown rendering for content
-6. **Projects window** — list view + detail view + back button + standalone static pages
-7. **Blog window + standalone post pages** — validates the SEO architecture
-8. **Playground window**
-9. **Contact window**
-10. **Rive integration** — replace placeholder icons with Rive animations
-11. **Mobile fallback** — full-screen takeover pattern
-12. **Polish pass** — motion timing, focus states, accessibility audit, Lighthouse
-13. **SEO + meta** — sitemap, RSS, JSON-LD, OG images
-14. **Deploy** — connect to host, configure DNS
+4. **Window resize system** — edge + corner resize handles, content pinned top-left, internal scroll on overflow
+5. **Icon drag + Reset behaviour** — repositionable icons (percentage-based positioning), Reset button in top bar wired to clear windows and restore default icon positions
+6. **About Me window** — first real content, validates the window pattern
+7. **Resume window** — validates Markdown rendering for content
+8. **Projects window** — list view + detail view + back button + standalone static pages
+9. **Blog window + standalone post pages** — validates the SEO architecture
+10. **Playground window**
+11. **Contact window**
+12. **Rive integration** — replace placeholder icons with Rive animations
+13. **Mobile fallback** — full-screen takeover pattern (icon drag and window resize disabled on mobile)
+14. **Polish pass** — motion timing, focus states, accessibility audit, Lighthouse
+15. **SEO + meta** — sitemap, RSS, JSON-LD, OG images
+16. **Deploy** — connect to host, configure DNS
 
 Each session should reference this PRD plus the relevant skills (`design.md`, `copywriting.md`).

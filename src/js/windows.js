@@ -36,6 +36,7 @@ export class WindowManager {
     win.addEventListener('mousedown', () => this.bringToFront(win));
 
     this._makeDraggable(win);
+    this._makeResizable(win);
     this._trapFocus(win);
 
     if (!prefersReducedMotion()) {
@@ -84,31 +85,88 @@ export class WindowManager {
 
   _makeDraggable(win) {
     const titlebar = win.querySelector('.window__titlebar');
-    let startX, startY, startLeft, startTop;
 
-    const onMove = (e) => {
-      const x = e.touches ? e.touches[0].clientX : e.clientX;
-      const y = e.touches ? e.touches[0].clientY : e.clientY;
-      win.style.left = `${startLeft + x - startX}px`;
-      win.style.top = `${startTop + y - startY}px`;
-    };
-
-    const onUp = () => {
-      document.removeEventListener('mousemove', onMove);
-      document.removeEventListener('mouseup', onUp);
-    };
-
-    titlebar.addEventListener('mousedown', (e) => {
+    titlebar.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
       if (e.target.closest('.window__close')) return;
-      startX = e.clientX;
-      startY = e.clientY;
-      startLeft = win.offsetLeft;
-      startTop = win.offsetTop;
+
+      const startX = e.clientX;
+      const startY = e.clientY;
+      const startLeft = win.offsetLeft;
+      const startTop = win.offsetTop;
+
+      titlebar.setPointerCapture(e.pointerId);
       this.bringToFront(win);
-      document.addEventListener('mousemove', onMove);
-      document.addEventListener('mouseup', onUp);
+
+      const onMove = (ev) => {
+        win.style.left = `${startLeft + ev.clientX - startX}px`;
+        win.style.top = `${startTop + ev.clientY - startY}px`;
+      };
+
+      const onEnd = () => {
+        titlebar.removeEventListener('pointermove', onMove);
+        titlebar.removeEventListener('pointerup', onEnd);
+        titlebar.removeEventListener('pointercancel', onEnd);
+      };
+
+      titlebar.addEventListener('pointermove', onMove);
+      titlebar.addEventListener('pointerup', onEnd);
+      titlebar.addEventListener('pointercancel', onEnd);
       e.preventDefault();
     });
+  }
+
+  _makeResizable(win) {
+    const MIN_W = 320;
+    const MIN_H = 240;
+    const EDGE_GAP = 8;
+
+    const startResize = (handle, axes) => (e) => {
+      if (e.button !== 0) return;
+
+      const startX = e.clientX;
+      const startY = e.clientY;
+      const startW = win.offsetWidth;
+      const startH = win.offsetHeight;
+      const cursor = axes === 'xy' ? 'nwse-resize' : axes === 'x' ? 'ew-resize' : 'ns-resize';
+
+      handle.setPointerCapture(e.pointerId);
+      document.body.style.userSelect = 'none';
+      document.body.style.cursor = cursor;
+
+      const onMove = (ev) => {
+        if (axes.includes('x')) {
+          const maxW = window.innerWidth - win.offsetLeft - EDGE_GAP;
+          const next = startW + ev.clientX - startX;
+          win.style.width = `${Math.min(maxW, Math.max(MIN_W, next))}px`;
+        }
+        if (axes.includes('y')) {
+          const maxH = window.innerHeight - win.offsetTop - EDGE_GAP;
+          const next = startH + ev.clientY - startY;
+          win.style.height = `${Math.min(maxH, Math.max(MIN_H, next))}px`;
+        }
+      };
+
+      const onEnd = () => {
+        handle.removeEventListener('pointermove', onMove);
+        handle.removeEventListener('pointerup', onEnd);
+        handle.removeEventListener('pointercancel', onEnd);
+        document.body.style.userSelect = '';
+        document.body.style.cursor = '';
+      };
+
+      handle.addEventListener('pointermove', onMove);
+      handle.addEventListener('pointerup', onEnd);
+      handle.addEventListener('pointercancel', onEnd);
+      e.preventDefault();
+    };
+
+    const right = win.querySelector('.window__resize-right');
+    const bottom = win.querySelector('.window__resize-bottom');
+    const corner = win.querySelector('.window__resize-corner');
+    right.addEventListener('pointerdown', startResize(right, 'x'));
+    bottom.addEventListener('pointerdown', startResize(bottom, 'y'));
+    corner.addEventListener('pointerdown', startResize(corner, 'xy'));
   }
 
   _trapFocus(win) {

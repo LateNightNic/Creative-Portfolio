@@ -14,7 +14,8 @@
   background: var(--white);
   border: var(--window-border);
   box-shadow: var(--window-shadow);
-  min-width: 18rem;
+  min-width: 20rem;
+  min-height: 15rem;
   width: 32rem;
   max-width: calc(100vw - 2rem);
   max-height: calc(100vh - var(--taskbar-height) - 2rem);
@@ -190,4 +191,64 @@
   font-size: 0.8125rem;
   line-height: 1.5;
   color: var(--gray-600);
+}
+
+/* ── Resize handles ────────────────────────────────────── */
+
+.window__resize-right,
+.window__resize-bottom,
+.window__resize-corner {
+  position: absolute;
+}
+
+/* Invisible hit area — right edge (skips titlebar so it can't be grabbed accidentally) */
+.window__resize-right {
+  top: 2rem;
+  right: -4px;
+  width: 8px;
+  height: calc(100% - 2rem);
+  cursor: ew-resize;
+}
+
+/* Invisible hit area — bottom edge */
+.window__resize-bottom {
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  cursor: ns-resize;
+}
+
+/* Visible corner handle */
+.window__resize-corner {
+  bottom: 0;
+  right: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: nwse-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.window__resize-corner::before {
+  content: '';
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--gray-400);
+  border-bottom: 2px solid var(--gray-400);
+}
+
+.window__resize-corner:hover::before {
+  border-color: var(--black);
+}
+
+/* Resize disabled on mobile — windows go fullscreen takeover instead */
+@media (max-width: 768px) {
+  .window__resize-right,
+  .window__resize-bottom,
+  .window__resize-corner {
+    display: none;
+  }
 }

@@ -20,10 +20,33 @@ export class IconManager {
 
   reset() {
     if (!this.activated) return;
+
+    // Clear inline styles and remove free class so icons reflow to natural CSS positions
     for (const icon of this.icons) {
-      const def = this.defaults.get(icon);
-      if (!def) continue;
+      icon.style.left = '';
+      icon.style.top = '';
+    }
+    this.grid.classList.remove('icon-grid--free');
+
+    // Re-capture positions at current viewport size
+    const snapshots = this.icons.map((icon) => {
+      const r = icon.getBoundingClientRect();
+      return { icon, viewportLeft: r.left, viewportTop: r.top };
+    });
+
+    this.grid.classList.add('icon-grid--free');
+    const gridRect = this.grid.getBoundingClientRect();
+
+    for (const { icon, viewportLeft, viewportTop } of snapshots) {
+      const def = {
+        xPercent: (viewportLeft / window.innerWidth) * 100,
+        yPx: viewportTop - gridRect.top,
+      };
+      this.defaults.set(icon, { ...def });
       this.state.set(icon, { ...def });
+    }
+
+    for (const icon of this.icons) {
       this._apply(icon);
     }
   }

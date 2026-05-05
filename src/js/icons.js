@@ -77,25 +77,6 @@ export class IconManager {
     icon.style.top = `${s.yPx}px`;
   }
 
-  _otherRects(self) {
-    return this.icons
-      .filter((other) => other !== self)
-      .map((other) => ({
-        left: other.offsetLeft,
-        top: other.offsetTop,
-        right: other.offsetLeft + other.offsetWidth,
-        bottom: other.offsetTop + other.offsetHeight,
-      }));
-  }
-
-  _overlapsAny(left, top, w, h, rects) {
-    const right = left + w;
-    const bottom = top + h;
-    return rects.some(
-      (r) => !(right <= r.left || left >= r.right || bottom <= r.top || top >= r.bottom)
-    );
-  }
-
   _makeDraggable(icon) {
     icon.addEventListener('pointerdown', (e) => {
       if (e.button !== 0) return;
@@ -115,10 +96,6 @@ export class IconManager {
       const dyMin = desktopRect.top - iconRect.top;
       const dyMax = desktopRect.bottom - iconH - iconRect.top;
 
-      const otherRects = this._otherRects(icon);
-
-      let lastValidLeft = startLeft;
-      let lastValidTop = startTop;
       let moved = false;
 
       icon.setPointerCapture(e.pointerId);
@@ -133,20 +110,8 @@ export class IconManager {
 
         const dx = Math.max(dxMin, Math.min(dxMax, dxRaw));
         const dy = Math.max(dyMin, Math.min(dyMax, dyRaw));
-        const proposedLeft = startLeft + dx;
-        const proposedTop = startTop + dy;
-
-        if (!this._overlapsAny(proposedLeft, proposedTop, iconW, iconH, otherRects)) {
-          lastValidLeft = proposedLeft;
-          lastValidTop = proposedTop;
-        } else if (!this._overlapsAny(proposedLeft, lastValidTop, iconW, iconH, otherRects)) {
-          lastValidLeft = proposedLeft;
-        } else if (!this._overlapsAny(lastValidLeft, proposedTop, iconW, iconH, otherRects)) {
-          lastValidTop = proposedTop;
-        }
-
-        icon.style.left = `${lastValidLeft}px`;
-        icon.style.top = `${lastValidTop}px`;
+        icon.style.left = `${startLeft + dx}px`;
+        icon.style.top = `${startTop + dy}px`;
       };
 
       const onEnd = () => {

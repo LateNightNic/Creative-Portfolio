@@ -99,7 +99,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 120ms, color 120ms;
   position: relative;
 }
 
@@ -112,61 +111,6 @@
 }
 
 /* Hover / active states */
-.desktop-icon:hover .desktop-icon__graphic,
-.desktop-icon:focus-visible .desktop-icon__graphic {
-  background: var(--black);
-}
-
-.desktop-icon:hover .desktop-icon__graphic img,
-.desktop-icon:focus-visible .desktop-icon__graphic img {
-  filter: invert(1);
-}
-
-/* Trash icon needs lid box-shadow preserved on hover */
-.desktop-icon[data-app="trash"]:hover .desktop-icon__graphic::before,
-.desktop-icon[data-app="trash"]:focus-visible .desktop-icon__graphic::before {
-  border-color: var(--white);
-  background: transparent;
-  box-shadow: 0 -0.375rem 0 2px var(--white);
-  filter: none;
-}
-
-/* Trash icon — pinned to bottom-right of viewport */
-.desktop-icon[data-app="trash"] {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-}
-
-.desktop-icon[data-app="trash"]::after {
-  content: 'Reset Page';
-  position: absolute;
-  bottom: calc(100% + 0.25rem);
-  left: 50%;
-  transform: translateX(-50%) translateY(0.25rem);
-  background: var(--black);
-  color: var(--white);
-  font-family: var(--font-display);
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: var(--tracking-caps);
-  text-transform: uppercase;
-  white-space: nowrap;
-  padding: 0.25rem 0.5rem;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 120ms, transform 120ms;
-}
-
-.desktop-icon[data-app="trash"]:hover::after,
-.desktop-icon[data-app="trash"]:focus-visible::after {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.desktop-icon:active .desktop-icon__graphic {
-  transform: scale(0.95);
-}
 
 .desktop-icon__label {
   font-family: var(--font-display);
@@ -178,19 +122,6 @@
   letter-spacing: var(--tracking-normal);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .desktop-icon__graphic {
-    transition: none;
-  }
-
-  .desktop-icon:active .desktop-icon__graphic {
-    transform: none;
-  }
-
-  .desktop-icon[data-app="trash"]::after {
-    transition: none;
-  }
-}
 
 /* ── Mobile ────────────────────────────────────────────── */
 

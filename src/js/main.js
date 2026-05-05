@@ -1,4 +1,6 @@
 import { WindowManager } from './windows.js';
+import { IconManager } from './icons.js';
+import { initTopbar } from './topbar.js';
 import { getContent as aboutContent } from './apps/about.js';
 import { getContent as projectsContent } from './apps/projects.js';
 import { getContent as playgroundContent } from './apps/playground.js';
@@ -16,6 +18,7 @@ const apps = {
 };
 
 const manager = new WindowManager(document.getElementById('windows'));
+const iconManager = new IconManager();
 
 document.querySelectorAll('.desktop-icon').forEach((icon) => {
   const app = apps[icon.dataset.app];
@@ -30,6 +33,5 @@ document.querySelectorAll('.desktop-icon').forEach((icon) => {
   });
 });
 
-document.querySelector('.taskbar__title').addEventListener('click', () => {
-  manager.closeAll();
-});
+initTopbar({ windowManager: manager, iconManager });
+1

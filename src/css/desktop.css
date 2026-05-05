@@ -14,6 +14,12 @@
   position: relative;
 }
 
+.taskbar__left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .taskbar__title {
   font-family: var(--font-display);
   font-size: var(--text-xs);
@@ -26,6 +32,27 @@
 }
 
 .taskbar__title:focus-visible {
+  outline-color: var(--white);
+}
+
+.taskbar__reset {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--tracking-caps);
+  color: var(--white);
+  text-transform: none;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  opacity: 0.7;
+  transition: opacity 120ms;
+}
+
+.taskbar__reset:hover {
+  opacity: 1;
+}
+
+.taskbar__reset:focus-visible {
   outline-color: var(--white);
 }
 
@@ -58,7 +85,8 @@
 
 .desktop {
   flex: 1;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -75,6 +103,26 @@
   grid-auto-flow: column;
   direction: rtl;
   gap: 1.5rem 1rem;
+}
+
+/* Free-positioning mode: applied by JS on desktop viewports once
+   default positions have been snapshotted from the grid layout. */
+.icon-grid--free {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  direction: ltr;
+}
+
+.icon-grid--free .desktop-icon {
+  position: absolute;
+  cursor: grab;
+  touch-action: none;
+}
+
+.icon-grid--free .desktop-icon:active {
+  cursor: grabbing;
 }
 
 /* ── Desktop icon ──────────────────────────────────────── */
@@ -131,13 +179,24 @@
     padding: 1.5rem 1rem;
   }
 
-  .icon-grid {
+  .icon-grid,
+  .icon-grid--free {
+    display: grid;
+    position: static;
+    direction: rtl;
     grid-template-columns: repeat(2, 9rem);
+    grid-auto-flow: column;
     gap: 1.5rem 1rem;
   }
 
-  .desktop-icon {
+  .desktop-icon,
+  .icon-grid--free .desktop-icon {
+    position: static;
+    direction: ltr;
+    cursor: pointer;
     width: 9rem;
+    left: auto;
+    top: auto;
   }
 
   .desktop-icon__graphic {

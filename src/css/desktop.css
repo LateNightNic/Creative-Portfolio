@@ -105,25 +105,6 @@
   gap: 1.5rem 1rem;
 }
 
-/* Free-positioning mode: applied by JS on desktop viewports once
-   default positions have been snapshotted from the grid layout. */
-.icon-grid--free {
-  display: block;
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-  direction: ltr;
-}
-
-.icon-grid--free .desktop-icon {
-  position: absolute;
-  cursor: grab;
-  touch-action: none;
-}
-
-.icon-grid--free .desktop-icon:active {
-  cursor: grabbing;
-}
 
 /* ── Desktop icon ──────────────────────────────────────── */
 
@@ -179,8 +160,7 @@
     padding: 1.5rem 1rem;
   }
 
-  .icon-grid,
-  .icon-grid--free {
+  .icon-grid {
     display: grid;
     position: static;
     direction: rtl;
@@ -189,14 +169,11 @@
     gap: 1.5rem 1rem;
   }
 
-  .desktop-icon,
-  .icon-grid--free .desktop-icon {
+  .desktop-icon {
     position: static;
     direction: ltr;
     cursor: pointer;
     width: 9rem;
-    left: auto;
-    top: auto;
   }
 
   .desktop-icon__graphic {

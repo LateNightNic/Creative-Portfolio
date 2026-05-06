@@ -14,6 +14,12 @@
   position: relative;
 }
 
+.taskbar__left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .taskbar__title {
   font-family: var(--font-display);
   font-size: var(--text-xs);
@@ -26,6 +32,27 @@
 }
 
 .taskbar__title:focus-visible {
+  outline-color: var(--white);
+}
+
+.taskbar__reset {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--tracking-caps);
+  color: var(--white);
+  text-transform: none;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  opacity: 0.7;
+  transition: opacity 120ms;
+}
+
+.taskbar__reset:hover {
+  opacity: 1;
+}
+
+.taskbar__reset:focus-visible {
   outline-color: var(--white);
 }
 
@@ -58,7 +85,8 @@
 
 .desktop {
   flex: 1;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -76,6 +104,7 @@
   direction: rtl;
   gap: 1.5rem 1rem;
 }
+
 
 /* ── Desktop icon ──────────────────────────────────────── */
 
@@ -132,11 +161,18 @@
   }
 
   .icon-grid {
+    display: grid;
+    position: static;
+    direction: rtl;
     grid-template-columns: repeat(2, 9rem);
+    grid-auto-flow: column;
     gap: 1.5rem 1rem;
   }
 
   .desktop-icon {
+    position: static;
+    direction: ltr;
+    cursor: pointer;
     width: 9rem;
   }
 

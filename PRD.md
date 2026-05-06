@@ -85,9 +85,11 @@ Each of the six desktop icons opens a pop-up window over the desktop. Windows ca
 - The actual PDF lives in `/public/nic-milligan-resume.pdf` and is also linked from the HTML `<head>` for SEO
 
 #### App 5: Contact
-- Opens a smaller window
-- Contains: email address (clickable mailto), social links repeated, optional contact form
-- Decision pending: simple mailto only, or include a form (form requires Formspree/similar). **Recommend mailto-only at launch unless form-driven inquiries become a priority.**
+- **Desktop:** opens a window containing a contact form; submissions deliver to `hello@nicmilligan.com`
+- **Mobile:** tapping the icon triggers a `mailto:hello@nicmilligan.com` link directly — no window, no form
+- Both surfaces include social links
+- Built with standard HTML / CSS / JS — no paid backend. Use a free-tier form handler (recommended: **Web3Forms** — 250 submissions/month free, no SDK, plain HTML `<form>` POST)
+- Note: purely client-side email is impossible; a free third-party handler (Web3Forms, Formspree, or Netlify Forms) is the minimum required infrastructure
 
 #### App 6: My Blog
 - Opens a window with a list of blog posts (title, date, excerpt)
@@ -208,7 +210,7 @@ The desktop metaphor breaks on phones. The mobile fallback follows the **Cyan Ba
 
 - [ ] Domain name + DNS provider
 - [ ] Deployment target (Netlify vs Vercel vs Cloudflare Pages)
-- [ ] Contact form: mailto only, or proper form with Formspree/Resend?
+- [x] Contact form: Web3Forms on desktop, `mailto:` on mobile ✓
 - [ ] Easter egg concept
 - [ ] Art direction (separate doc — `design.md`)
 - [ ] Copy voice and microcopy patterns (separate doc — `copywriting.md`)
@@ -231,7 +233,7 @@ Sessions should be built in this order. Each session ends with the work committe
 9. **Playground window**
 10. **Contact window**
 11. **Rive integration** — replace placeholder icons with Rive animations
-12. **Icon drag + Reset behaviour** — repositionable icons (percentage-based positioning), Reset button in top bar wired to clear windows and restore default icon positions/
+12. **Icon drag + Reset behaviour** — repositionable icons (percentage-based positioning), Reset button in top bar wired to clear windows and restore default icon positions
 13. **Mobile fallback** — full-screen takeover pattern (icon drag and window resize disabled on mobile)
 14. **Polish pass** — motion timing, focus states, accessibility audit, Lighthouse
 15. **SEO + meta** — sitemap, RSS, JSON-LD, OG images

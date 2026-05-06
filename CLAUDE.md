@@ -6,6 +6,9 @@ This file is read by Claude Code at the start of every session. Keep it short, s
 
 **Nic Milligan Creative** — an OS-style creative portfolio. Single-page desktop interface with draggable, resizable pop-up windows. Desktop icons are repositionable via drag. A Reset button in the top bar restores the desktop to its default state. Vanilla HTML/CSS/JS. No framework.
 
+**Domain:** `https://www.nicmilligan.com`
+**Contact email:** `hello@nicmilligan.com`
+
 Full spec: see `PRD.md` in the repo root.
 
 ## Stack
@@ -29,6 +32,7 @@ Full spec: see `PRD.md` in the repo root.
 - **Reset** (top bar button) must close all windows and restore all icon positions to their CSS-defined defaults without reloading the page
 - **Window resize** is handled via right edge (horizontal), bottom edge (vertical), and bottom-right corner (both). Content is pinned top-left; overflow scrolls vertically. Minimum window size: 320 × 240px
 - **Icon drag and window resize are disabled on mobile** (below 768px). Mobile uses full-screen takeover instead
+- **Contact app:** desktop opens a Web3Forms-powered contact form (free tier, plain HTML `<form>` POST) to `hello@nicmilligan.com`. Mobile triggers `mailto:hello@nicmilligan.com` directly. No paid backend — never introduce one without explicit approval
 
 ## Folder structure
 

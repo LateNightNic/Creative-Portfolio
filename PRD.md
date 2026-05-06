@@ -4,7 +4,7 @@
 
 An OS-style creative portfolio for **Nic Milligan**. The interface presents as a stylised desktop environment where the user clicks animated icons to open pop-up windows containing portfolio content. The desktop is non-scrolling — the desktop *is* the page — with content surfaced through draggable, resizable windows. This document describes the polished, finished release.
 
-**Domain:** TBD
+**Domain:** https://www.nicmilligan.com
 **Owner:** Nic Milligan
 **Repo:** `Creative-Portfolio`
 **Stack:** Vanilla HTML / CSS / JavaScript (no framework)
@@ -224,14 +224,14 @@ Sessions should be built in this order. Each session ends with the work committe
 2. **Static desktop layout** — top bar (with Reset button), icon grid (six placeholder icons), no interactivity yet
 3. **Window system** — open/close/drag/z-index logic with one dummy app
 4. **Window resize system** — edge + corner resize handles, content pinned top-left, internal scroll on overflow
-5. **Icon drag + Reset behaviour** — repositionable icons (percentage-based positioning), Reset button in top bar wired to clear windows and restore default icon positions
-6. **About Me window** — first real content, validates the window pattern
-7. **Resume window** — validates Markdown rendering for content
-8. **Projects window** — list view + detail view + back button + standalone static pages
-9. **Blog window + standalone post pages** — validates the SEO architecture
-10. **Playground window**
-11. **Contact window**
-12. **Rive integration** — replace placeholder icons with Rive animations
+5. **About Me window** — first real content, validates the window pattern
+6. **Resume window** — validates Markdown rendering for content
+7. **Projects window** — list view + detail view + back button + standalone static pages
+8. **Blog window + standalone post pages** — validates the SEO architecture
+9. **Playground window**
+10. **Contact window**
+11. **Rive integration** — replace placeholder icons with Rive animations
+12. **Icon drag + Reset behaviour** — repositionable icons (percentage-based positioning), Reset button in top bar wired to clear windows and restore default icon positions/
 13. **Mobile fallback** — full-screen takeover pattern (icon drag and window resize disabled on mobile)
 14. **Polish pass** — motion timing, focus states, accessibility audit, Lighthouse
 15. **SEO + meta** — sitemap, RSS, JSON-LD, OG images

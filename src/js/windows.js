@@ -45,6 +45,7 @@ export class WindowManager {
     }
 
     this.container.appendChild(win);
+    this._clampToViewport(win);
     closeBtn.focus();
     return win;
   }
@@ -73,14 +74,23 @@ export class WindowManager {
 
   _position(win) {
     const TASKBAR_H = 40;
-    const spread = 60;
-    const offset = () => Math.round((Math.random() - 0.5) * spread * 2);
+    const H_SPREAD = 160; // horizontal: windows vary ±H_SPREAD/2 px from screen center
+    const V_SPREAD = 48;  // vertical: windows open 24 to 24+V_SPREAD px below taskbar
     const winW = 512;
-    const winH = 400;
-    const left = Math.max(8, (window.innerWidth - winW) / 2 + offset());
-    const top = Math.max(TASKBAR_H + 8, (window.innerHeight - winH) / 2 + offset());
+    const left = Math.max(8, (window.innerWidth - winW) / 2 + Math.round((Math.random() - 0.5) * H_SPREAD));
+    const top = TASKBAR_H + 24 + Math.round(Math.random() * V_SPREAD);
     win.style.left = `${left}px`;
     win.style.top = `${top}px`;
+  }
+
+  _clampToViewport(win) {
+    const MARGIN = 8;
+    const TASKBAR_H = 40;
+    const maxTop = window.innerHeight - win.offsetHeight - MARGIN;
+    const clamped = Math.max(TASKBAR_H + MARGIN, maxTop);
+    if (win.offsetTop > clamped) {
+      win.style.top = `${clamped}px`;
+    }
   }
 
   _makeDraggable(win) {

@@ -20,10 +20,6 @@ export function getContent() {
           <input class="contact-input" type="text" id="contact-subject" name="subject"
             placeholder="Subject" required>
         </div>
-        <div class="contact-row">
-          <label class="contact-row__label" for="contact-attachment">Attach</label>
-          <input class="contact-file" type="file" id="contact-attachment" name="attachment">
-        </div>
       </div>
 
       <textarea class="contact-textarea" id="contact-message" name="message"

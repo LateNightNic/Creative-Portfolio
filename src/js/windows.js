@@ -12,7 +12,7 @@ export class WindowManager {
     });
   }
 
-  open({ id, title, content, triggerEl }) {
+  open({ id, title, content, triggerEl, width, height }) {
     const existing = this.container.querySelector(`[data-window-id="${id}"]`);
     if (existing) {
       this.bringToFront(existing);
@@ -24,7 +24,10 @@ export class WindowManager {
     win.dataset.windowId = id;
     win.setAttribute('aria-label', title);
 
-    this._position(win);
+    if (width)  win.style.width  = `${width}px`;
+    if (height) win.style.height = `${height}px`;
+
+    this._position(win, width);
     win.style.zIndex = ++zCounter;
 
     win.querySelector('.window__title').textContent = title;
@@ -72,11 +75,11 @@ export class WindowManager {
     win.style.zIndex = ++zCounter;
   }
 
-  _position(win) {
+  _position(win, openingWidth) {
     const TASKBAR_H = 40;
     const H_SPREAD = 160; // horizontal: windows vary ±H_SPREAD/2 px from screen center
     const V_SPREAD = 48;  // vertical: windows open 24 to 24+V_SPREAD px below taskbar
-    const winW = 512;
+    const winW = openingWidth || 512;
     const left = Math.max(8, (window.innerWidth - winW) / 2 + Math.round((Math.random() - 0.5) * H_SPREAD));
     const top = TASKBAR_H + 24 + Math.round(Math.random() * V_SPREAD);
     win.style.left = `${left}px`;

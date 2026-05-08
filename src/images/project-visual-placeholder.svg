@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="stripes" patternUnits="userSpaceOnUse" width="16" height="16" patternTransform="rotate(-45)">
+      <rect width="16" height="16" fill="#f3f1ec"/>
+      <rect width="1" height="16" fill="#d8d4ca"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#stripes)"/>
+  <text x="50%" y="50%" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="600" letter-spacing="2" text-anchor="middle" dominant-baseline="middle" fill="#7a7367">VISUAL PLACEHOLDER</text>
+</svg>

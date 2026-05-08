@@ -240,4 +240,3 @@ Sessions should be built in this order. Each session ends with the work committe
 16. **Deploy** — connect to host, configure DNS
 
 Each session should reference this PRD plus the relevant skills (`design.md`, `copywriting.md`).
-1

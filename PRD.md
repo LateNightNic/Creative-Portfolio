@@ -57,7 +57,8 @@ Each of the six desktop icons opens a pop-up window over the desktop. Windows ca
 - Window content is **pinned to the top-left** of the window — content does not reflow or rescale when the window is resized
 - If resizing crops the content, a **vertical scroll bar** appears inside the window
 - Minimum window dimensions enforced so the title bar and close control remain usable
-- Minimise and maximise behaviour is out of scope
+- **Maximise** toggles the window to fill the desktop area and restores its prior bounds on a second click — in scope and implemented
+- **Minimise** is out of scope for launch: a minimize control exists in the window chrome for visual consistency but is inert (hidden) until a taskbar/dock mechanism exists to restore a minimized window
 
 #### App 1: My Projects
 - Opens a single window listing all projects
@@ -199,7 +200,7 @@ The desktop metaphor breaks on phones. The mobile fallback follows the **Cyan Ba
 
 - CMS integration (content is Markdown in repo)
 - Authentication / login screen (we're not copying mitchivin's boot sequence)
-- Window minimise / maximise
+- Window minimise (control exists in UI but is inert; no restore mechanism yet)
 - Multiple desktop "spaces" or multi-window workspace memory
 - Persisting icon positions or window state across sessions (in-memory only)
 - Comments on blog posts

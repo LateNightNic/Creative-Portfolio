@@ -19,8 +19,25 @@
 
   <header class="taskbar" role="banner">
     <div class="taskbar__left">
-      <h1 class="taskbar__title">Nic Milligan Creative</h1>
-      <button class="taskbar__reset" aria-label="Reset desktop">Reset</button>
+      <div class="taskbar__menu">
+        <button
+          class="taskbar__menu-trigger"
+          id="taskbar-menu-trigger"
+          aria-haspopup="menu"
+          aria-expanded="false"
+          aria-controls="taskbar-menu"
+        >
+          Nic Milligan Creative
+        </button>
+        <ul class="taskbar__menu-panel" id="taskbar-menu" role="menu" aria-labelledby="taskbar-menu-trigger" hidden>
+          <li role="none">
+            <button class="taskbar__menu-item" role="menuitem" data-action="reset-desktop">Reset Desktop</button>
+          </li>
+          <li role="none">
+            <button class="taskbar__menu-item" role="menuitem" data-action="close-windows">Close Windows</button>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="taskbar__right">
       <div class="taskbar__social" aria-label="Social links">

@@ -19,15 +19,40 @@
 
   <header class="taskbar" role="banner">
     <div class="taskbar__left">
-      <h1 class="taskbar__title">Nic Milligan Creative</h1>
-      <button class="taskbar__reset" aria-label="Reset desktop">Reset</button>
+      <div class="taskbar__menu">
+        <button
+          class="taskbar__menu-trigger"
+          id="taskbar-menu-trigger"
+          aria-haspopup="menu"
+          aria-expanded="false"
+          aria-controls="taskbar-menu"
+        >
+          Nic Milligan Creative
+        </button>
+        <ul class="taskbar__menu-panel" id="taskbar-menu" role="menu" aria-labelledby="taskbar-menu-trigger" hidden>
+          <li role="none">
+            <button class="taskbar__menu-item" role="menuitem" data-action="reset-desktop">Reset Desktop</button>
+          </li>
+          <li role="none">
+            <button class="taskbar__menu-item" role="menuitem" data-action="close-windows">Close Windows</button>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="taskbar__right">
       <div class="taskbar__social" aria-label="Social links">
-        <a class="taskbar__social-link" href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a class="taskbar__social-link" href="#" target="_blank" rel="noopener noreferrer">YouTube</a>
-        <a class="taskbar__social-link" href="https://www.linkedin.com/in/nicmilligan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a class="taskbar__social-link" href="https://x.com/_LateNightNic#" target="_blank" rel="noopener noreferrer">Twitter / X</a>
+        <a class="taskbar__social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <img src="images/social-icons/icon-Instagram.svg" alt="" />
+        <a class="taskbar__social-link" href="https://www.linkedin.com/in/nicmilligan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <img src="images/social-icons/icon-LinkedIn.svg" alt="" />
+        </a>
+        </a>
+        <a class="taskbar__social-link" href="https://x.com/_LateNightNic#" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+          <img src="images/social-icons/icon-X.svg" alt="" />
+        </a>
+        <a class="taskbar__social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <img src="images/social-icons/icon-Youtube.svg" alt="" />
+        </a>
       </div>
       <div class="taskbar__clock" aria-hidden="true"></div>
     </div>

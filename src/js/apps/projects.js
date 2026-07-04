@@ -2,44 +2,167 @@ import { openProjectWindow } from './project-detail.js';
 
 export const projects = [
   {
-    slug: 'a-cool-project',
-    title: 'A Really Cool Project',
-    tag: 'Personal',
-    description: 'A personal photography website with rich, orchestrated animations.',
+    // Project 01 //
+    slug: 'candy-crush-saga-ctv',
+    title: 'Candy Crush Saga CTV',
+    tag: 'Commercial',
+    description: 'Designing and overseeing a new creative strategy and direction for King Games flagship game, Candy Crush Saga.',
     role: 'Senior Creative',
-    startDate: 'Sept 2025',
-    endDate: 'Sept 2026',
+    startDate: 'Sept 2024',
+    endDate: 'Nov 2025',
     // link: 'https://example.com',
     // stack: ['Next.js', 'React', 'TypeScript', 'GSAP', 'Tailwind CSS', 'Cloudflare Images', 'Neon Postgres', 'Drizzle ORM'],
-    tasks: ['Design', 'Direction', 'Creative Strategy', 'Concept Development'],
+    tasks: ['Creative Direction', 'Art Direction', 'Creative Strategy', 'Concept Development', 'Copywriting'],
     sections: [
       {
         heading: 'Overview',
-        body: '<p>A personal photography website built to display my collections with rich, orchestrated animations. The goal was to create something visually complex where every transition, scroll interaction, and hover state feels intentional and coordinated. I chose a stack that could keep up with what I had in mind.</p>',
+        body: '<p>An overview of CTV the problem faced / solved. Brief overview of my role</p>',
       },
       {
-        heading: 'Stack',
-        body: '<p>Next.js 15 (App Router) with React 19 and TypeScript. Tailwind CSS v4 for styling. GSAP 3 with the <code>SplitText</code> plugin drives nearly every animation on the site. Neon serverless PostgreSQL with Drizzle ORM manages collections and images. All photos are served through Cloudflare Images with three delivery variants (<code>ttfcover</code>, <code>ttfgallery</code>, <code>fullres</code>), serving the right resolution per context while keeping bandwidth low.</p>',
+        heading: 'A new creativey strategy',
+        body: '<p>How I created the new creative strategy and 12 month roadmap. Bringing AI development in-house.</p>',
       },
       {
-        heading: 'Loading Sequence',
-        body: '<p>The entry experience is a fully orchestrated GSAP timeline: a photograph slides up from below while progressively sharpening (animating <code>filter: blur</code> from 10px to 0), a progress counter counts to 100%, and an SVG border traces itself around the image via <code>strokeDashoffset</code> math on the rectangle’s perimeter. Everything runs as a single <code>gsap.timeline()</code> with precise overlap offsets (<code>"-=0.3"</code>, <code>"&lt;"</code>) so nothing feels disconnected.</p>',
-      },
-      {
-        heading: 'Infinite Slider',
-        body: '<p>The main page is a full-height, horizontally draggable slider showing all collections. The collection array is duplicated five times and starts in the middle copy. A <code>requestAnimationFrame</code> loop applies linear interpolation (<code>diff * 0.1</code>) between the current position and the target, producing buttery momentum even on trackpads.</p>',
+        heading: 'Direction & Results',
+        body: '<p>How I led on direction and the impact I had on the business. Increased volume of concepts tested, consistently won tests. Concepts / formats that allow for rapid optimisation to maximise winnings</p>',
       },
     ],
     visuals: [
-      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Through the Frames hero' },
-      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Collection grid' },
-      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Detail page' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Through the Frames hero', caption: 'Candy Factory Video (museum feature)' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Collection grid', caption: 'Candy Factory Op Montage' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Detail page', caption: 'Sweet Waiting' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Detail page', caption: 'Sweet Waiting Op Variations + Messaging' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Detail page', caption: 'Find More Visuals' },  
     ],
   },
-  { slug: 'project-2', title: 'Project 2', tag: 'Personal',    description: 'A short, generic description of this placeholder project.' },
-  { slug: 'project-3', title: 'Project 3', tag: 'Commercial', description: 'A short, generic description of this placeholder project.' },
-  { slug: 'project-4', title: 'Project 4', tag: 'Personal',    description: 'A short, generic description of this placeholder project.' },
-  { slug: 'project-5', title: 'Project 5', tag: 'Commercial', description: 'A short, generic description of this placeholder project.' },
+  {
+    // Project 02 //
+    slug: 'crush-their-crush',
+    title: 'Crush Their Crush',
+    tag: 'Commercial',
+    description: 'A short, generic description of this placeholder project.',
+    role: 'Senior Creative',
+    startDate: 'Sept 2024',
+    endDate: 'Nov 2025',
+    // link: 'https://example.com',
+    // stack: ['Next.js', 'React', 'TypeScript', 'GSAP', 'Tailwind CSS', 'Cloudflare Images', 'Neon Postgres', 'Drizzle ORM'],
+    tasks: ['Creative Direction', 'Art Direction', 'Creative Strategy', 'Concept Development', 'Copywriting'],
+    sections: [
+      {
+        heading: 'Overview',
+        body: '<p>Placeholder overview copy.</p>',
+      },
+      {
+        heading: 'Placeholder Heading',
+        body: '<p>Placeholder section copy.</p>',
+      },
+      {
+        heading: 'Direction & Results',
+        body: '<p>Placeholder results copy.</p>',
+      },
+    ],
+    visuals: [
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Placeholder visual', caption: 'Caption placeholder' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Placeholder visual', caption: 'Caption placeholder' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Placeholder visual', caption: 'Caption placeholder' },
+    ],
+  },
+  {
+    // Project 03 //
+    slug: 'mobile-gaming-user-aquisition',
+    title: 'Mobile Gaming UA',
+    tag: 'Commercial',
+    description: 'A short, generic description of this placeholder project.',
+    role: 'Senior Creative',
+    startDate: 'Sept 2024',
+    endDate: 'Nov 2025',
+    // link: 'https://example.com',
+    // stack: ['Next.js', 'React', 'TypeScript', 'GSAP', 'Tailwind CSS', 'Cloudflare Images', 'Neon Postgres', 'Drizzle ORM'],
+    tasks: ['Creative Direction', 'Art Direction', 'Creative Strategy', 'Concept Development', 'Copywriting'],
+    sections: [
+      {
+        heading: 'Overview',
+        body: '<p>Placeholder overview copy.</p>',
+      },
+      {
+        heading: 'Placeholder Heading',
+        body: '<p>Placeholder section copy.</p>',
+      },
+      {
+        heading: 'Direction & Results',
+        body: '<p>Placeholder results copy.</p>',
+      },
+    ],
+    visuals: [
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Placeholder visual', caption: 'Caption placeholder' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Placeholder visual', caption: 'Caption placeholder' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Placeholder visual', caption: 'Caption placeholder' },
+    ],
+  },
+  {
+    // Project 04 //
+    slug: 'treatwell-brand-animation',
+    title: 'Treatwell Brand Animation',
+    tag: 'Commercial',
+    description: 'A short, generic description of this placeholder project.',
+    role: 'Senior Creative',
+    startDate: 'Sept 2024',
+    endDate: 'Nov 2025',
+    // link: 'https://example.com',
+    // stack: ['Next.js', 'React', 'TypeScript', 'GSAP', 'Tailwind CSS', 'Cloudflare Images', 'Neon Postgres', 'Drizzle ORM'],
+    tasks: ['Creative Direction', 'Art Direction', 'Creative Strategy', 'Concept Development', 'Copywriting'],
+    sections: [
+      {
+        heading: 'Overview',
+        body: '<p>Placeholder overview copy.</p>',
+      },
+      {
+        heading: 'Placeholder Heading',
+        body: '<p>Placeholder section copy.</p>',
+      },
+      {
+        heading: 'Direction & Results',
+        body: '<p>Placeholder results copy.</p>',
+      },
+    ],
+    visuals: [
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Placeholder visual', caption: 'Caption placeholder' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Placeholder visual', caption: 'Caption placeholder' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Placeholder visual', caption: 'Caption placeholder' },
+    ],
+  },
+  {
+    // Project 05 //
+    slug: 'project-5',
+    title: 'Project 5',
+    tag: 'Commercial',
+    description: 'A short, generic description of this placeholder project.',
+    role: 'Senior Creative',
+    startDate: 'Sept 2024',
+    endDate: 'Nov 2025',
+    // link: 'https://example.com',
+    // stack: ['Next.js', 'React', 'TypeScript', 'GSAP', 'Tailwind CSS', 'Cloudflare Images', 'Neon Postgres', 'Drizzle ORM'],
+    tasks: ['Creative Direction', 'Art Direction', 'Creative Strategy', 'Concept Development', 'Copywriting'],
+    sections: [
+      {
+        heading: 'Overview',
+        body: '<p>Placeholder overview copy.</p>',
+      },
+      {
+        heading: 'Placeholder Heading',
+        body: '<p>Placeholder section copy.</p>',
+      },
+      {
+        heading: 'Direction & Results',
+        body: '<p>Placeholder results copy.</p>',
+      },
+    ],
+    visuals: [
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Placeholder visual', caption: 'Caption placeholder' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Placeholder visual', caption: 'Caption placeholder' },
+      { type: 'image', src: 'images/project-visual-placeholder.svg', alt: 'Placeholder visual', caption: 'Caption placeholder' },
+    ],
+  },
 ];
 
 function card({ slug, title, description, tag }) {

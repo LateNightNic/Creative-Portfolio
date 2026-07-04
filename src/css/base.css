@@ -6,40 +6,50 @@
   --gray-400: #999999;
   --gray-600: #555555;
 
+  /* Palette */
+  --color-off-white: #FAF9F6;
+  --color-grey: #EFEEEC;
+  --color-light-black: #1C1F1C;
+  --color-blue: #1D3DD8;
+
   /* Typefaces */
-  --font-display: 'Alumni Sans', system-ui, sans-serif;
+  --font-display: 'Doto', system-ui, sans-serif;
   --font-body: 'Merriweather', Georgia, serif;
   --font-mono: 'Courier New', Courier, monospace;
+  --font-roundness: 100; /* Doto ROND axis: 0 = square dots, 100 = fully round */
 
-  /* Type scale — Major Third (×1.25), base 16px */
-  --text-xs:   0.75rem;   /* 12px — labels, captions, timestamps */
-  --text-sm:   0.875rem;  /* 14px — UI chrome, metadata */
-  --text-base: 1rem;      /* 16px — body copy */
-  --text-md:   1.25rem;   /* 20px — large body, intro paragraphs */
-  --text-lg:   1.5rem;    /* 24px — H3, section headings */
-  --text-xl:   2rem;      /* 32px — H2, window titles */
-  --text-2xl:  3rem;      /* 48px — H1 */
-  --text-3xl:  4rem;      /* 64px — display / hero */
-  --text-4xl:  5rem;      /* 80px — oversized display moments */
+  /* Type scale — sized to match design.md's locked type styles (Headline 01–04, Body copy 01–03), extended for general UI needs */
+  --text-xs:   0.75rem;   /* 12px — Body copy 03 (fine print), labels/captions */
+  --text-sm:   0.875rem;  /* 14px — Headline 03 / Body copy 02, UI chrome */
+  --text-base: 1rem;      /* 16px — Headline 02 & 04 / Body copy 01 (default body) */
+  --text-md:   1.25rem;   /* 20px — large UI text, intro paragraphs */
+  --text-lg:   1.5rem;    /* 24px — large UI text (e.g. taskbar title) */
+  --text-xl:   2rem;      /* 32px — Headline 01 (section/content headings) */
+  --text-2xl:  3rem;      /* 48px — project detail titles */
+  --text-3xl:  4rem;      /* 64px — reserved, no style defined yet */
+  --text-4xl:  5rem;      /* 80px — reserved, no style defined yet */
 
-  /* Line heights */
-  --leading-display:    1.05;  /* Alumni Sans ≥48px */
-  --leading-heading:    1.2;   /* Alumni Sans 24–40px */
-  --leading-subheading: 1.35;  /* Alumni Sans ≤20px */
-  --leading-body:       1.7;   /* Merriweather body (WCAG ≥1.5) */
-  --leading-ui:         1.4;   /* Small UI text */
+  /* Line heights — matches design.md's Line-height rules */
+  --leading-heading:    1.2;   /* Headings, Doto 20–32px */
+  --leading-subheading: 1.25;  /* Subheadings, Doto ≤16px */
+  --leading-body:       1.5;   /* Body copy, Merriweather (design.md: 1.25–1.35) */
   --leading-code:       1.6;   /* Monospace */
 
-  /* Letter-spacing */
-  --tracking-display:  -0.03em; /* Alumni Sans ≥48px */
-  --tracking-heading:  -0.01em; /* Alumni Sans 24–40px */
-  --tracking-normal:    0em;    /* Alumni Sans ≤20px, Merriweather */
-  --tracking-caps:      0.08em; /* ALL-CAPS labels / UI chrome */
+  /* Letter-spacing — matches design.md's Letter-spacing rules */
+  --tracking-heading:   0em;    /* Doto headings */
+  --tracking-normal:    0em;    /* Doto body-size text, Merriweather */
+  --tracking-caps:      0.06em; /* ALL-CAPS labels / UI chrome / window titles */
 
   --taskbar-height: 2.5rem;
 
-  --window-border: 2px solid var(--black);
-  --window-shadow: 4px 4px 0 var(--black);
+  --stroke-40: rgba(28, 31, 28, 0.4);
+  --window-radius: 8px;
+  --window-border: 1px solid var(--color-light-black);
+  --window-shadow: 24px 24px 0px rgba(28, 31, 28, 0.1);
+  --window-frame-stroke:
+    0 0 0 1px var(--color-light-black),
+    0 0 0 5px var(--color-grey),
+    0 0 0 6px var(--color-light-black);
 
   --duration-window: 180ms;
   --ease-window: cubic-bezier(0.2, 0, 0.2, 1);
@@ -49,8 +59,9 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: var(--leading-body);
-  background: var(--white);
-  color: var(--black);
+  font-variation-settings: 'ROND' var(--font-roundness);
+  background: var(--color-off-white);
+  color: var(--color-light-black);
   height: 100dvh;
   overflow: hidden;
   display: flex;
@@ -58,6 +69,6 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--black);
+  outline: 2px solid var(--color-light-black);
   outline-offset: 2px;
 }

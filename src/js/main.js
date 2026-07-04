@@ -10,12 +10,12 @@ import { getContent as blogContent } from './apps/blog.js';
 import { setWindowManager } from './apps/project-detail.js';
 
 const apps = {
-  projects:   { title: 'My Projects',  content: projectsContent, init: projectsInit },
-  playground: { title: 'Playground',   content: playgroundContent },
-  about:      { title: 'About Me',     content: aboutContent },
+  projects:   { title: 'Work',         content: projectsContent, init: projectsInit, width: 640, height: 640 },
+  playground: { title: 'Playground',   content: playgroundContent, width: 768, height: 640 },
+  about:      { title: 'About',        content: aboutContent, width: 560, height: 560 },
   resume:     { title: 'Resume',       content: resumeContent, init: resumeInit, width: 720, height: 880 },
-  contact:    { title: 'Contact',      content: contactContent, init: contactInit },
-  blog:       { title: 'My Blog',      content: blogContent },
+  contact:    { title: 'Contact',      content: contactContent, init: contactInit, width: 480, height: 400 },
+  blog:       { title: 'Blog',         content: blogContent, width: 480, height: 400 },
 };
 
 const manager = new WindowManager(document.getElementById('windows'));

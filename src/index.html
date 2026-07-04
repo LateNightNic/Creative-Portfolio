@@ -7,7 +7,7 @@
   <meta name="description" content="The creative portfolio of Nic Milligan — design, motion, and interactive work.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:ROND,wght@0..100,100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/desktop.css">
@@ -18,26 +18,30 @@
   <header class="taskbar" role="banner">
     <div class="taskbar__left">
       <button class="taskbar__title" aria-label="Close all windows and return to desktop">
-        <h1>Nic Milligan Creative</h1>
+        <h1>Nic Milligan</h1>
       </button>
+      <div class="taskbar__connect-wrap">
+        <button class="taskbar__connect" aria-haspopup="menu" aria-expanded="false">Connect</button>
+        <div class="taskbar__connect-menu" role="menu" hidden>
+          <a class="taskbar__connect-link" role="menuitem" href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="taskbar__connect-link" role="menuitem" href="#" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a class="taskbar__connect-link" role="menuitem" href="https://www.linkedin.com/in/nicmilligan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="taskbar__connect-link" role="menuitem" href="https://x.com/_LateNightNic#" target="_blank" rel="noopener noreferrer">Twitter / X</a>
+        </div>
+      </div>
       <button class="taskbar__reset" aria-label="Reset desktop">Reset</button>
     </div>
-    <nav class="taskbar__socials" aria-label="Social links">
-      <a class="taskbar__social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
-      <a class="taskbar__social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
-      <a class="taskbar__social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LI</a>
-      <a class="taskbar__social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="X">X</a>
-    </nav>
+    <div class="taskbar__clock" aria-hidden="true"></div>
   </header>
 
   <main class="desktop" aria-label="Desktop">
     <div class="icon-grid" role="list">
 
-      <button class="desktop-icon" data-app="projects" role="listitem" aria-label="Open My Projects">
+      <button class="desktop-icon" data-app="projects" role="listitem" aria-label="Open Work">
         <div class="desktop-icon__graphic" aria-hidden="true">
           <img src="images/temp-Icons/temp-MyProjects.png" alt="" draggable="false">
         </div>
-        <span class="desktop-icon__label">My Projects</span>
+        <span class="desktop-icon__label">Work</span>
       </button>
 
       <button class="desktop-icon" data-app="playground" role="listitem" aria-label="Open Playground">
@@ -47,11 +51,25 @@
         <span class="desktop-icon__label">Playground</span>
       </button>
 
-      <button class="desktop-icon" data-app="about" role="listitem" aria-label="Open About Me">
+      <button class="desktop-icon" data-app="contact" role="listitem" aria-label="Open Contact">
+        <div class="desktop-icon__graphic" aria-hidden="true">
+          <img src="images/temp-Icons/temp-Contact.png" alt="" draggable="false">
+        </div>
+        <span class="desktop-icon__label">Contact</span>
+      </button>
+
+      <button class="desktop-icon" data-app="about" role="listitem" aria-label="Open About">
         <div class="desktop-icon__graphic" aria-hidden="true">
           <img src="images/temp-Icons/temp-AboutMe.png" alt="" draggable="false">
         </div>
-        <span class="desktop-icon__label">About Me</span>
+        <span class="desktop-icon__label">About</span>
+      </button>
+
+      <button class="desktop-icon" data-app="blog" role="listitem" aria-label="Open Blog">
+        <div class="desktop-icon__graphic" aria-hidden="true">
+          <img src="images/temp-Icons/temp-Blog.png" alt="" draggable="false">
+        </div>
+        <span class="desktop-icon__label">Blog</span>
       </button>
 
       <button class="desktop-icon" data-app="resume" role="listitem" aria-label="Open Resume">
@@ -61,20 +79,6 @@
         <span class="desktop-icon__label">Resume</span>
       </button>
 
-      <button class="desktop-icon" data-app="contact" role="listitem" aria-label="Open Contact">
-        <div class="desktop-icon__graphic" aria-hidden="true">
-          <img src="images/temp-Icons/temp-Contact.png" alt="" draggable="false">
-        </div>
-        <span class="desktop-icon__label">Contact</span>
-      </button>
-
-      <button class="desktop-icon" data-app="blog" role="listitem" aria-label="Open My Blog">
-        <div class="desktop-icon__graphic" aria-hidden="true">
-          <img src="images/temp-Icons/temp-Blog.png" alt="" draggable="false">
-        </div>
-        <span class="desktop-icon__label">My Blog</span>
-      </button>
-
     </div>
   </main>
 
@@ -82,11 +86,21 @@
 
   <template id="window-template">
     <div class="window" role="dialog" aria-modal="true">
-      <div class="window__titlebar">
-        <span class="window__title"></span>
-        <button class="window__close" aria-label="Close window">&times;</button>
+      <div class="window__inner">
+        <div class="window__titlebar">
+          <span class="window__titlebar-hatch" aria-hidden="true"></span>
+          <span class="window__title"></span>
+          <div class="window__titlebar-right">
+            <span class="window__titlebar-hatch" aria-hidden="true"></span>
+            <div class="window__controls">
+              <button class="window__control window__control--minimize" aria-label="Minimize window" hidden>&minus;</button>
+              <button class="window__control window__control--maximize" aria-label="Maximize window" aria-pressed="false"></button>
+              <button class="window__control window__control--close" aria-label="Close window">&times;</button>
+            </div>
+          </div>
+        </div>
+        <div class="window__content"></div>
       </div>
-      <div class="window__content"></div>
       <div class="window__resize-right" aria-hidden="true"></div>
       <div class="window__resize-bottom" aria-hidden="true"></div>
       <div class="window__resize-corner" aria-hidden="true"></div>

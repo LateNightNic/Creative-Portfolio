@@ -16,7 +16,7 @@ export class WindowManager {
     const existing = this.container.querySelector(`[data-window-id="${id}"]`);
     if (existing) {
       this.bringToFront(existing);
-      existing.querySelector('.window__close').focus();
+      existing.querySelector('.window__control--close').focus();
       return existing;
     }
 
@@ -33,8 +33,11 @@ export class WindowManager {
     win.querySelector('.window__title').textContent = title;
     win.querySelector('.window__content').innerHTML = content;
 
-    const closeBtn = win.querySelector('.window__close');
+    const closeBtn = win.querySelector('.window__control--close');
     closeBtn.addEventListener('click', () => this.close(win, triggerEl));
+
+    const maximizeBtn = win.querySelector('.window__control--maximize');
+    maximizeBtn.addEventListener('click', () => this._toggleMaximize(win));
 
     win.addEventListener('mousedown', () => this.bringToFront(win));
 
@@ -101,7 +104,7 @@ export class WindowManager {
 
     titlebar.addEventListener('pointerdown', (e) => {
       if (e.button !== 0) return;
-      if (e.target.closest('.window__close')) return;
+      if (e.target.closest('.window__control')) return;
 
       const startX = e.clientX;
       const startY = e.clientY;
@@ -127,6 +130,32 @@ export class WindowManager {
       titlebar.addEventListener('pointercancel', onEnd);
       e.preventDefault();
     });
+  }
+
+  _toggleMaximize(win) {
+    const MARGIN = 8;
+    const TASKBAR_H = 40;
+    const btn = win.querySelector('.window__control--maximize');
+
+    if (win.dataset.maximized === 'true') {
+      win.style.left = win.dataset.prevLeft;
+      win.style.top = win.dataset.prevTop;
+      win.style.width = win.dataset.prevWidth;
+      win.style.height = win.dataset.prevHeight;
+      win.dataset.maximized = 'false';
+      btn.setAttribute('aria-pressed', 'false');
+    } else {
+      win.dataset.prevLeft = win.style.left;
+      win.dataset.prevTop = win.style.top;
+      win.dataset.prevWidth = win.style.width;
+      win.dataset.prevHeight = win.style.height;
+      win.style.left = `${MARGIN}px`;
+      win.style.top = `${TASKBAR_H + MARGIN}px`;
+      win.style.width = `${window.innerWidth - MARGIN * 2}px`;
+      win.style.height = `${window.innerHeight - TASKBAR_H - MARGIN * 2}px`;
+      win.dataset.maximized = 'true';
+      btn.setAttribute('aria-pressed', 'true');
+    }
   }
 
   _makeResizable(win) {

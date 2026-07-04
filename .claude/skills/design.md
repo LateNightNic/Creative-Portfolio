@@ -12,59 +12,61 @@ Read this skill before any task involving:
 
 ## Status
 
-🚧 **This skill is intentionally incomplete.** Art direction has not been locked yet.
-
-When art direction is decided, this file will define:
+**Typography, Color, and Window chrome are locked — and implemented.** Spacing, Motion, Iconography, and Responsive breakpoints are still 🚧 TBD.
 
 ### Typography
 
 **Typefaces**
-- Display face: **Alumni Sans** — large headings, window titles, app names
+- Display face: **Doto** — headings, window titles, labels, tags
 - Text face: **Merriweather** — body copy, paragraphs, lists
 - Monospace face (code blocks, system text — if used): TBD
 
-**Type scale** — Major Third (×1.25), base 16px, rounded to clean values
+**Type styles**
 
-| Token       | Size  | Usage                              |
-|-------------|-------|------------------------------------|
-| `--text-xs`  | 12px  | Labels, captions, timestamps       |
-| `--text-sm`  | 14px  | UI chrome, metadata, secondary text|
-| `--text-base`| 16px  | Body copy (Merriweather default)    |
-| `--text-md`  | 20px  | Large body, intro paragraphs       |
-| `--text-lg`  | 24px  | H3, window section headings        |
-| `--text-xl`  | 32px  | H2, window titles                  |
-| `--text-2xl` | 48px  | H1, page-level headings            |
-| `--text-3xl` | 64px  | Display / hero text (Alumni Sans)  |
-| `--text-4xl` | 80px  | Oversized display moments only     |
+| Style | Face | Size/Line-height | Weight | Usage |
+|---|---|---|---|---|
+| Headline 01 | Doto | 32px / 36px | Light | Section/content headings (e.g. "TITLE OF THE WORK") |
+| Headline 02 | Doto | 16px / 20px | Light | Subheadings |
+| Headline 03 | Doto | 14px / 16px | Regular | Small labels/tags (e.g. "personal" pill) |
+| Headline 04 | Doto | 16px / 20px | Regular | Window titlebar text ("WORK", "ABOUT ME") |
+| Body copy 01 | Merriweather | 16px / 20px | Regular | Default paragraph copy |
+| Body copy 02 | Merriweather | 14px / 16px | Light | Secondary/meta text |
+| Body copy 03 | Merriweather | 12px / 14.5px | Light | Fine print |
+
+Usage column beyond "Headline 04" (confirmed by the "Windows" category in the type spec) is inferred from mockup context, not explicitly labeled — reasonable defaults, adjust if a specific use case disagrees.
+
+There is no size above 24px in the locked scale — no hero/display moment has been designed yet. If one is needed later, treat it as a new addition, not a revival of the old abstract token scale.
 
 **Line height rules**
 
-| Context                          | Value | Rationale                                  |
-|----------------------------------|-------|--------------------------------------------|
-| Display / hero (Alumni Sans ≥48px)| 1.05  | Tight at scale; optical spacing            |
-| Headings (Alumni Sans 24–40px)   | 1.2   | Comfortable without excess gap             |
-| Subheadings (Alumni Sans ≤20px)  | 1.35  | More open as size decreases                |
-| Body copy (Merriweather)         | 1.7   | Serif needs space; WCAG recommends ≥1.5    |
-| UI / metadata (small text)       | 1.4   | Compact but readable                       |
-| Code / monospace                 | 1.6   | Standard for code readability              |
+| Context                              | Value | Rationale                                  |
+|---------------------------------------|-------|--------------------------------------------|
+| Headings (Doto 20–24px)| 1.2   | Comfortable without excess gap             |
+| Subheadings (Doto ≤16px)| 1.25  | Slightly more open at small size           |
+| Body copy (Merriweather)              | 1.25–1.35 | Matches Body copy 01/02 (16/20, 14/16) |
+| Body copy, fine print (Merriweather ≤12px)| 1.2 | Matches Body copy 03 (12/14.5)         |
+| Code / monospace                      | 1.6   | Standard for code readability              |
 
 **Letter-spacing rules**
 
-| Context                          | Value    | Rationale                              |
-|----------------------------------|----------|----------------------------------------|
-| Alumni Sans ≥48px (display)      | -0.03em  | Optically tighten large Alumni Sans    |
-| Alumni Sans 24–40px (heading)    | -0.01em  | Slight tightening at mid size          |
-| Alumni Sans ≤20px                | 0        | Default tracking                       |
-| ALL-CAPS labels / UI chrome      | 0.08em   | Industry standard for legibility       |
-| Merriweather body                | 0        | Serif handles its own spacing          |
+| Context                           | Value    | Rationale                              |
+|-------------------------------------|----------|----------------------------------------|
+| Doto, headings      | 0        | Default tracking                       |
+| ALL-CAPS labels / UI chrome / window titles | 0.08em | Matches tracked uppercase treatment seen on window titles and section headings in mockups |
+| Merriweather body                   | 0        | Serif handles its own spacing          |
 
 ### Color
-- Background palette (desktop background, window backgrounds)
-- Foreground palette (text, icons)
-- Accent / interactive colors (hover, focus, active)
-- Semantic colors (link, success, warning if needed)
-- Dark mode behaviour (if any)
-- All colors as CSS custom properties on `:root`
+
+| Token | Name | Hex | RGBA | Role |
+|---|---|---|---|---|
+| `--color-off-white` | Off-White | `#FAF9F6` | `rgba(250, 249, 246, 1)` | Primary background (desktop, window content) |
+| `--color-grey` | Grey | `#EFEEEC` | `rgba(239, 238, 236, 1)` | Secondary surface (panels, dividers, placeholder thumbnails) |
+| `--color-light-black` | Light Black | `#1C1F1C` | `rgba(28, 31, 28, 1)` | Foreground (text, icons, borders) |
+| `--color-blue` | Blue | `#1D3DD8` | `rgba(29, 61, 216, 1)` | Accent/interactive (hover, focus, links, active states) |
+
+- Semantic colors (success, warning, error) — not yet defined
+- Dark mode — not yet defined
+- All colors should be exposed as CSS custom properties on `:root` using the token names above
 
 ### Spacing
 - Base unit (likely 4px or 8px)
@@ -73,11 +75,39 @@ When art direction is decided, this file will define:
 - Icon grid spacing
 
 ### Window chrome
-- Title bar height and styling
-- Close button placement and style
-- Border / shadow / corner radius rules
-- Active vs inactive window appearance
-- Drag affordance
+
+**Shape**
+- Window corners: rounded, `--window-radius: 8px`
+- Photo / thumbnail images inside windows: rounded, ~8px radius
+- Tag / pill buttons (e.g. "personal"): fully rounded (pill shape)
+- Window clips its own content to the rounded frame (`overflow: hidden` on `.window`) — titlebar/content backgrounds don't poke square corners past the rounded border
+
+**Border & fill**
+- Frame border: a concentric triple stroke (`--window-frame-stroke`) — 1px Light Black, then 4px Grey, then 1px Light Black (6px total), built as three flat `box-shadow` rings rather than the `border` property (only one color/style is possible with `border`)
+- Frame background: soft diagonal gradient between `var(--color-off-white)` and `var(--color-grey)` — shows through the header too (titlebar background is transparent, not a separate panel)
+- Structural note: `.window` (outer) carries the frame stroke/shadow/gradient with `overflow: visible`; a `.window__inner` wrapper (titlebar + content) carries `overflow: hidden` and its own matching `border-radius` so content still clips to the rounded corners. Needed because `overflow: hidden` on the same element would clip its own outer box-shadow rings — splitting frame decoration from content clipping avoids that.
+
+**Shadow**
+- `--window-shadow: 0 16px 32px rgba(28, 31, 28, 0.08)` — 16px offset, 8% opacity
+
+**Titlebar (Window Header)**
+- Bottom border only: `1px solid var(--stroke-40)` (Light Black at 40% opacity) — no border on the other three sides
+- Title is centered (CSS grid `1fr auto 1fr`), set in Headline 02 (Doto, 16/20, weight 300/Light), uppercase, 0.08em tracking
+- Title is flanked on both sides by a decorative horizontal hatch pattern (`repeating-linear-gradient`, `var(--stroke-40)`) — a drag-affordance texture, purely decorative, CSS-only (no extra markup per line)
+
+**Controls**
+- Three circular outline buttons (`~1.375rem`, `1px solid var(--color-light-black)`, invert fill on hover/focus) on the right side of the titlebar: minimize, maximize/restore, close
+- **Close**: fully functional (unchanged behavior, restyled).
+- **Maximize**: fully functional — toggles the window to fill the desktop area and restores its prior bounds on a second click (`WindowManager._toggleMaximize` in `src/js/windows.js`).
+- **Minimize**: present in the DOM/CSS to match the visual spec but shipped `hidden` — there's no taskbar tray/dock to restore a minimized window from yet, so it's inert rather than a dead click target. Building that restore mechanism is future work.
+
+**Content patterns**
+- **List row** (seen in the Work window): thumbnail (Grey, rounded ~8px) + tag pill (Headline 03, outlined) + title (Headline 01) + description (Body copy 01) + thin horizontal divider rule between rows
+- **Profile layout** (seen in the About Me window): full-width rounded photo (~8px radius) + name (Headline 04) + role line (Body copy 01) + body paragraphs (Body copy 01)
+- **Scrollbar**: custom `::-webkit-scrollbar` — thin track with a `1px solid var(--stroke-40)` left border, thumb a small bordered rounded rect (`1px solid var(--color-light-black)`); `scrollbar-width: thin` fallback for Firefox
+
+**Still TBD**
+- Active vs inactive window appearance — not shown in either mockup
 
 ### Motion
 - Default easing curve(s)
@@ -99,12 +129,9 @@ When art direction is decided, this file will define:
 
 ## Until this is filled in
 
-If a styling decision is needed and this skill is empty, **propose 2–3 options** with concrete examples rather than picking silently. Default placeholders during development:
+Typography, color, and window chrome are locked — use the values above rather than placeholders.
 
-- Background: `#0a0a0a`
-- Foreground: `#ffffff`
-- Accent: `#ff4d00` (intentionally jarring placeholder so it gets replaced)
-- Type: Alumni Sans (headings), Merriweather (body)
+For sections still marked TBD (Spacing, Motion, Iconography, Responsive breakpoints), if a decision is needed and this skill is empty, **propose 2–3 options** with concrete examples rather than picking silently. Default placeholders during development:
+
 - Spacing base: 8px
-- Radius: 8px on windows
-- Shadow: `0 24px 48px rgba(0,0,0,0.4)` on open windows
+- Motion: 180–200ms, ease-out, respecting `prefers-reduced-motion`

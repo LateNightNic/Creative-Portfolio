@@ -2,16 +2,16 @@ import { openProjectWindow } from './project-detail.js';
 
 export const projects = [
   {
-    slug: 'through-the-frames',
-    title: 'Through the Frames',
+    slug: 'a-cool-project',
+    title: 'A Really Cool Project',
     tag: 'Personal',
     description: 'A personal photography website with rich, orchestrated animations.',
-    role: 'Full Stack Developer',
+    role: 'Senior Creative',
     startDate: 'Sept 2025',
-    endDate: 'Sept 2025',
-    link: 'https://example.com',
-    stack: ['Next.js', 'React', 'TypeScript', 'GSAP', 'Tailwind CSS', 'Cloudflare Images', 'Neon Postgres', 'Drizzle ORM'],
-    tasks: ['Design', 'Branding', 'Backend Development', 'Frontend Development'],
+    endDate: 'Sept 2026',
+    // link: 'https://example.com',
+    // stack: ['Next.js', 'React', 'TypeScript', 'GSAP', 'Tailwind CSS', 'Cloudflare Images', 'Neon Postgres', 'Drizzle ORM'],
+    tasks: ['Design', 'Direction', 'Creative Strategy', 'Concept Development'],
     sections: [
       {
         heading: 'Overview',
@@ -48,10 +48,8 @@ function card({ slug, title, description, tag }) {
       <button type="button" class="project-card" data-slug="${slug}" aria-label="Open project: ${title}">
         <div class="project-card__thumb" aria-hidden="true"></div>
         <div class="project-card__info">
-          <div class="project-card__header">
-            <span class="project-card__title">${title}</span>
-            <span class="project-card__tag">${tag}</span>
-          </div>
+          <span class="project-card__tag">${tag}</span>
+          <span class="project-card__title">${title}</span>
           <p class="project-card__desc">${description}</p>
         </div>
       </button>

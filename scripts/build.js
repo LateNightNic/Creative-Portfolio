@@ -1,11 +1,13 @@
 const fs = require('fs');
 const path = require('path');
+const { generateBlog } = require('./lib/generate-blog');
 
 const ROOT = path.join(__dirname, '..');
 const SRC = path.join(ROOT, 'src');
 const PUBLIC = path.join(ROOT, 'public');
 const CONTENT = path.join(ROOT, 'content');
 const DIST = path.join(ROOT, 'dist');
+const SITE_URL = 'https://www.nicmilligan.com';
 
 function ensureDir(dir) {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -33,7 +35,7 @@ function build() {
   copyDir(PUBLIC, path.join(DIST, 'public'));
 
   // TODO (Session 6): render /content/projects/*.md → /dist/projects/[slug]/index.html
-  // TODO (Session 7): render /content/blog/*.md → /dist/blog/[slug]/index.html
+  generateBlog({ outDir: DIST, siteUrl: SITE_URL });
   // TODO (Session 13): generate sitemap.xml, feed.xml, robots.txt
 
   console.log('Done → dist/');

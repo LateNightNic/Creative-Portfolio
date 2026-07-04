@@ -6,7 +6,7 @@ import { getContent as projectsContent, init as projectsInit } from './apps/proj
 import { getContent as playgroundContent, init as playgroundInit } from './apps/playground.js';
 import { getContent as resumeContent, init as resumeInit } from './apps/resume.js';
 import { getContent as contactContent, init as contactInit } from './apps/contact.js';
-import { getContent as blogContent } from './apps/blog.js';
+import { getContent as blogContent, init as blogInit } from './apps/blog.js';
 import { setWindowManager } from './apps/project-detail.js';
 
 const apps = {
@@ -15,7 +15,7 @@ const apps = {
   about:      { title: 'About',        content: aboutContent, width: 560, height: 560 },
   resume:     { title: 'Resume',       content: resumeContent, init: resumeInit, width: 720, height: 880 },
   contact:    { title: 'Contact',      content: contactContent, init: contactInit, width: 480, height: 400 },
-  blog:       { title: 'Blog',         content: blogContent, width: 480, height: 400 },
+  blog:       { title: 'Blog',         content: blogContent, init: blogInit, width: 480, height: 400 },
 };
 
 const manager = new WindowManager(document.getElementById('windows'));

@@ -101,9 +101,8 @@
 }
 
 .taskbar__social-link {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--color-light-black);
+  display: flex;
+  align-items: center;
   opacity: 0.7;
   transition: opacity 120ms;
 }
@@ -111,6 +110,11 @@
 .taskbar__social-link:hover,
 .taskbar__social-link:focus-visible {
   opacity: 1;
+}
+
+.taskbar__social-link img {
+  height: 1.25rem;
+  width: auto;
 }
 
 .taskbar__clock {

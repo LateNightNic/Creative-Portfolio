@@ -92,7 +92,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 1px solid var(--color-light-black);
+  border: var(--window-border);
   background: transparent;
   color: var(--color-light-black);
   font-size: 0.875rem;
@@ -169,7 +169,7 @@
 .project-visuals::-webkit-scrollbar-thumb,
 .resume__viewer::-webkit-scrollbar-thumb {
   background: var(--color-off-white);
-  border: 1px solid var(--color-light-black);
+  border: var(--window-border);
   border-radius: 0.25rem;
 }
 
@@ -223,7 +223,7 @@
 .project-card__title {
   font-family: var(--font-display);
   font-size: var(--text-xl);
-  font-weight: 300;
+  font-weight: 800;
   line-height: var(--leading-heading);
   text-transform: uppercase;
   white-space: nowrap;
@@ -236,12 +236,12 @@
   align-self: flex-start;
   flex-shrink: 0;
   font-family: var(--font-display);
-  font-size: var(--text-xs);
-  font-weight: 400;
-  text-transform: lowercase;
+  font-size: var(--text-sm);
+  font-weight: 900;
+  text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  border: 1px solid var(--color-light-black);
-  border-radius: 8px;
+  border: var(--window-border);
+  border-radius: var(--window-radius);
   padding: 0.375rem 0.75rem 0.225rem;
 }
 
@@ -250,7 +250,7 @@
   font-size: var(--text-sm);
   line-height: var(--leading-body);
   color: var(--color);
-  margin: 0;
+  margin: 0.1rem;
 }
 
 /* ── Contact window ─────────────────────────────────────── */
@@ -275,7 +275,7 @@
   align-items: center;
   min-height: 2.5rem;
   padding: 0 1.25rem;
-  border-bottom: 1px solid var(--gray-200);
+  border-bottom: var(--window-border);
   gap: 0.75rem;
 }
 
@@ -284,16 +284,16 @@
 }
 
 .contact-row:focus-within {
-  background: var(--gray-100);
+  background: var(--color-grey);
 }
 
 .contact-row__label {
   font-family: var(--font-display);
-  font-size: var(--text-xs);
-  font-weight: 600;
+  font-size: var(--text-sm);
+  font-weight: 900;
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
-  color: var(--gray-600);
+  color: var(--color-light-black);
   flex-shrink: 0;
   width: 4rem;
 }
@@ -301,7 +301,7 @@
 .contact-row__locked {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--gray-600);
+  color: var(--color-light);
 }
 
 .contact-input {
@@ -311,7 +311,6 @@
   color: var(--black);
   background: transparent;
   border: none;
-  padding: 0;
   line-height: var(--leading-body);
 }
 
@@ -323,25 +322,18 @@
   color: var(--gray-400);
 }
 
-.contact-file {
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  color: var(--black);
-  cursor: pointer;
-}
-
 .contact-textarea {
   width: 100%;
   min-height: 8rem;
   margin-top: 1.25rem;
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--black);
+  color: var(--color-light-black);
   background: transparent;
-  border: none;
+  border: var(--window-border);
   resize: vertical;
   line-height: var(--leading-body);
-  padding: 0;
+  padding: 0.5rem 0.5rem;
 }
 
 .contact-textarea:focus-visible {
@@ -357,29 +349,30 @@
   justify-content: flex-end;
   margin-top: 1rem;
   padding-top: 0.75rem;
-  border-top: 1px solid var(--gray-200);
+  /* border-top: var(--window-border); */
 }
 
 .contact-submit {
   font-family: var(--font-display);
   font-size: var(--text-sm);
-  font-weight: 700;
+  font-weight: 900;
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
-  background: var(--black);
-  color: var(--white);
-  border: 2px solid var(--black);
-  padding: 0.5rem 1.5rem;
+  background: transparent;
+  color: var(--color-light-black);
+  border: 1px solid var(--black);
+  border-radius: var(--window-radius);
+  padding: 0.375rem 2rem;
   cursor: pointer;
 }
 
 .contact-submit:hover {
-  background: var(--white);
-  color: var(--black);
+  background: var(--color-light-black);
+  color: var(--color-off-white);
 }
 
 .contact-submit:focus-visible {
-  outline: 2px solid var(--black);
+  outline: 2px solid var(--color-light-black);
   outline-offset: 2px;
 }
 
@@ -479,7 +472,8 @@
 .about__name {
   font-family: var(--font-display);
   font-size: var(--text-xl);
-  font-weight: 700;
+  font-weight: 800;
+  text-transform: uppercase;
   letter-spacing: var(--tracking-heading);
   line-height: var(--leading-heading);
   margin-bottom: 0.25rem;
@@ -488,10 +482,10 @@
 .about__role {
   font-family: var(--font-display);
   font-size: var(--text-sm);
-  font-weight: 400;
+  font-weight: 900;
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
-  color: var(--gray-600);
+  color: var(--color-light-black);
   margin-bottom: 1.25rem;
 }
 
@@ -661,11 +655,11 @@
 .project-chips li {
   font-family: var(--font-display);
   font-size: var(--text-sm);
-  font-weight: 400;
-  text-transform: lowercase;
-  border: 1px solid var(--color-light-black);
-  border-radius: 8px;
-  padding: 0.375rem 0.75rem 0.225rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  border: var(--window-border);
+  border-radius: var(--window-radius);
+  padding: 0.5rem 1rem;
 }
 
 .project-section + .project-section {
@@ -689,14 +683,6 @@
 
 .project-section p:last-child {
   margin-bottom: 0;
-}
-
-.project-section code {
-  font-family: var(--font-mono);
-  font-size: 0.9em;
-  background: var(--gray-100);
-  border: 1px solid var(--color-light-black);
-  padding: 0 0.25rem;
 }
 
 .project-visuals__header {
@@ -788,14 +774,15 @@
   justify-content: center;
   font-family: var(--font-display);
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: 900;
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
   line-height: 1;
   color: var(--color-light-black);
   background: transparent;
-  border: 1px solid var(--color-light-black);
-  padding: 0.4rem 0.75rem;
+  border: var(--window-border);
+  border-radius: var(--window-radius);
+  padding: 0.5rem 1rem;
   cursor: pointer;
   text-decoration: none;
 }

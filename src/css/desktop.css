@@ -283,19 +283,26 @@
   .icon-grid {
     display: grid;
     position: static;
-    grid-template-columns: repeat(2, 9rem);
+    grid-template-columns: repeat(2, minmax(0, 10.5rem));
+    grid-template-rows: none;
     grid-auto-flow: row;
-    gap: 1.5rem 1rem;
+    justify-content: center;
+    gap: 2rem 1.25rem;
+    width: 100%;
   }
 
-  .desktop-icon {
+  .icon-grid .desktop-icon {
+    grid-column: auto;
+    grid-row: auto;
     position: static;
     cursor: pointer;
-    width: 9rem;
+    width: 100%;
   }
 
   .desktop-icon__graphic {
-    width: 8rem;
-    height: 8rem;
+    width: 100%;
+    max-width: 9.5rem;
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
 }

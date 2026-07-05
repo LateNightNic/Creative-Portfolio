@@ -543,7 +543,8 @@
     flex: none;
     flex-basis: auto !important;
     min-width: 0;
-    overflow: visible;
+    overflow: visible !important;
+    background: none !important;
   }
 
   .project-divider {

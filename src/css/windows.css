@@ -532,6 +532,32 @@
     height: 2.75rem;
     font-size: 1.25rem;
   }
+
+  [data-window-id^="project:"] .window__content {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .project-overview,
+  .project-visuals {
+    flex: none;
+    flex-basis: auto !important;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .project-divider {
+    display: none;
+  }
+
+  .blog-post-back {
+    padding: 1rem 1.25rem;
+    min-height: 2.75rem;
+  }
+
+  .resume__btn {
+    min-height: 2.75rem;
+  }
 }
 
 /* ── Project card (button) ──────────────────────────────── */

@@ -17,6 +17,9 @@ body.static-page {
 .site-header {
   padding: 1.25rem 1.5rem;
   border-bottom: 1px solid var(--stroke-40);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .back-link {
@@ -34,6 +37,22 @@ body.static-page {
 .back-link:hover,
 .back-link:focus-visible {
   color: var(--color-blue);
+}
+
+.static-theme-toggle {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 900;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-light-black);
+  opacity: 0.7;
+  transition: opacity 120ms, color 120ms;
+}
+
+.static-theme-toggle:hover,
+.static-theme-toggle:focus-visible {
+  opacity: 1;
 }
 
 /* ── Article content ─────────────────────────────────────── */

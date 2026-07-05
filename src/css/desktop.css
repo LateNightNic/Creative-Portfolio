@@ -80,7 +80,7 @@
 }
 
 .taskbar__menu-item:hover {
-  background: rgba(28, 31, 28, 0.06);
+  background: var(--tint-hover);
 }
 
 .taskbar__menu-item:focus-visible {
@@ -135,6 +135,30 @@
   font-weight: 800;
   text-transform: uppercase;
   color: var(--color-light-black);
+}
+
+.taskbar__theme-toggle {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--color-light-black);
+  opacity: 0.7;
+  transition: opacity 120ms;
+}
+
+.taskbar__theme-toggle:hover,
+.taskbar__theme-toggle:focus-visible {
+  opacity: 1;
+}
+
+.taskbar__theme-toggle:focus-visible {
+  outline-color: var(--color-light-black);
+}
+
+:root[data-theme='dark'] .taskbar__social-link img {
+  filter: invert(1);
 }
 
 /* ── Desktop ───────────────────────────────────────────── */

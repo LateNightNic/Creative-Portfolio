@@ -9,6 +9,7 @@
   /* Palette */
   --color-off-white: #FAF9F6;
   --color-grey: #EFEEEC;
+  --color-dark-grey: #2F302F;
   --color-light-black: #1C1F1C;
   --color-blue: #1D3DD8;
 
@@ -43,6 +44,7 @@
   --taskbar-height: 2.5rem;
 
   --stroke-40: rgba(28, 31, 28, 0.4);
+  --tint-hover: rgba(28, 31, 28, 0.06);
   --window-radius: 8px;
   --window-border: 1px solid var(--color-light-black);
   --window-shadow: 24px 24px 0px rgba(28, 31, 28, 0.1);
@@ -53,6 +55,19 @@
 
   --duration-window: 180ms;
   --ease-window: cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+/* Dark theme — swaps the palette + the tokens that bake in the light
+   foreground's raw RGB rather than referencing --color-light-black, so
+   they don't flip automatically with the palette swap above. */
+:root[data-theme='dark'] {
+  --color-off-white: #1C1F1C;
+  --color-grey: var(--color-dark-grey);
+  --color-light-black: #FAF9F6;
+  --stroke-40: rgba(250, 249, 246, 0.4);
+  --tint-hover: rgba(250, 249, 246, 0.09);
+  --window-shadow: 24px 24px 0px rgba(0, 0, 0, 0.4);
+  --gray-100: #2A2A2A;
 }
 
 body {

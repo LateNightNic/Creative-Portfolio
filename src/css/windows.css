@@ -747,7 +747,7 @@
 
 .project-divider:hover::before,
 .project-divider:focus-visible::before {
-  background: rgba(0, 0, 0, 0.06);
+  background: var(--tint-hover);
 }
 
 .project-divider:focus-visible {

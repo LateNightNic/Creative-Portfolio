@@ -125,6 +125,10 @@
   width: auto;
 }
 
+.taskbar__social-link-label {
+  display: none;
+}
+
 .taskbar__clock {
   font-family: var(--font-display);
   font-size: var(--text-md);
@@ -225,7 +229,7 @@
   }
 
   .taskbar__clock {
-    white-space: nowrap;
+    display: none;
   }
 
   .taskbar__menu-trigger {
@@ -270,9 +274,21 @@
   }
 
   .taskbar__social-link {
-    min-width: 2.75rem;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    min-width: 8rem;
     min-height: 2.75rem;
-    justify-content: center;
+    padding: 0 0.5rem;
+  }
+
+  .taskbar__social-link-label {
+    display: inline;
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-caps);
+    color: var(--color-light-black);
   }
 
   .desktop {

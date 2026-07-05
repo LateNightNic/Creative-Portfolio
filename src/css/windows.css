@@ -226,9 +226,6 @@
   font-weight: 800;
   line-height: var(--leading-heading);
   text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   margin: .8rem 0 0rem;
 }
 

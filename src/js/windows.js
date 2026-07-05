@@ -1,3 +1,5 @@
+import { isMobile } from './mobile.js';
+
 const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -103,6 +105,7 @@ export class WindowManager {
     const titlebar = win.querySelector('.window__titlebar');
 
     titlebar.addEventListener('pointerdown', (e) => {
+      if (isMobile()) return; // full-screen takeover: no drag
       if (e.button !== 0) return;
       if (e.target.closest('.window__control')) return;
 

@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <title>{{title}} — Nic Milligan Creative</title>
   <meta name="description" content="{{description}}">
   <link rel="canonical" href="{{canonical}}">
@@ -21,9 +30,28 @@
 <body class="static-page">
   <header class="site-header">
     <a href="/" class="back-link" aria-label="Back to Nic Milligan Creative">&larr; Nic Milligan Creative</a>
+    <button class="static-theme-toggle" id="static-theme-toggle" type="button" aria-label="Switch to dark theme">DARK</button>
   </header>
   <main class="page-content">
     {{content}}
   </main>
+  <script>
+    (function () {
+      var btn = document.getElementById('static-theme-toggle');
+      if (!btn) return;
+      var root = document.documentElement;
+      function apply(theme) {
+        root.setAttribute('data-theme', theme);
+        try { localStorage.setItem('theme', theme); } catch (e) {}
+        var next = theme === 'dark' ? 'light' : 'dark';
+        btn.textContent = next.toUpperCase();
+        btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+      }
+      apply(root.getAttribute('data-theme') || 'light');
+      btn.addEventListener('click', function () {
+        apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      });
+    })();
+  </script>
 </body>
 </html>

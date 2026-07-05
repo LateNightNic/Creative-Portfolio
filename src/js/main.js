@@ -1,6 +1,7 @@
 import { WindowManager } from './windows.js';
 import { IconManager } from './icons.js';
 import { initTopbar } from './topbar.js';
+import { isMobile } from './mobile.js';
 import { getContent as aboutContent } from './apps/about.js';
 import { getContent as projectsContent, init as projectsInit } from './apps/projects.js';
 import { getContent as playgroundContent, init as playgroundInit } from './apps/playground.js';
@@ -26,6 +27,10 @@ document.querySelectorAll('.desktop-icon').forEach((icon) => {
   const app = apps[icon.dataset.app];
   if (!app) return;
   icon.addEventListener('click', () => {
+    if (icon.dataset.app === 'contact' && isMobile()) {
+      window.location.href = 'mailto:hello@nicmilligan.com';
+      return;
+    }
     const win = manager.open({
       id: icon.dataset.app,
       title: app.title,

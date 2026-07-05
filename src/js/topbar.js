@@ -20,46 +20,44 @@ function initClock() {
 
 export function initTopbar({ windowManager, iconManager }) {
   initMenu({ windowManager, iconManager });
+  initSocialMenu();
   initClock();
 }
 
-function initMenu({ windowManager, iconManager }) {
-  const trigger = document.getElementById('taskbar-menu-trigger');
-  const panel = document.getElementById('taskbar-menu');
-  if (!trigger || !panel) return;
-
-  const items = [...panel.querySelectorAll('.taskbar__menu-item')];
+function createDropdown({ trigger, panel, getItems, onToggle }) {
   const isOpen = () => trigger.getAttribute('aria-expanded') === 'true';
 
-  const openMenu = () => {
+  const open = () => {
     if (isOpen()) return;
-    panel.hidden = false;
     trigger.setAttribute('aria-expanded', 'true');
+    onToggle?.(true);
     document.addEventListener('pointerdown', onOutsidePointer, true);
-    document.addEventListener('keydown', onMenuKeydown, true);
-    items[0]?.focus();
+    document.addEventListener('keydown', onKeydown, true);
+    getItems()[0]?.focus();
   };
 
-  const closeMenu = ({ refocusTrigger = false } = {}) => {
+  const close = ({ refocusTrigger = false } = {}) => {
     if (!isOpen()) return;
-    panel.hidden = true;
     trigger.setAttribute('aria-expanded', 'false');
+    onToggle?.(false);
     document.removeEventListener('pointerdown', onOutsidePointer, true);
-    document.removeEventListener('keydown', onMenuKeydown, true);
+    document.removeEventListener('keydown', onKeydown, true);
     if (refocusTrigger) trigger.focus();
   };
 
   const onOutsidePointer = (e) => {
-    if (!panel.contains(e.target) && e.target !== trigger) closeMenu();
+    if (!panel.contains(e.target) && e.target !== trigger) close();
   };
 
-  const onMenuKeydown = (e) => {
+  const onKeydown = (e) => {
     if (e.key === 'Escape') {
       e.stopPropagation();
-      closeMenu({ refocusTrigger: true });
+      close({ refocusTrigger: true });
       return;
     }
-    if (e.key === 'Tab' && items.length >= 2) {
+    if (e.key === 'Tab') {
+      const items = getItems();
+      if (items.length < 2) return;
       const first = items[0];
       const last = items[items.length - 1];
       if (e.shiftKey && document.activeElement === first) {
@@ -72,16 +70,45 @@ function initMenu({ windowManager, iconManager }) {
     }
   };
 
-  trigger.addEventListener('click', () => (isOpen() ? closeMenu({ refocusTrigger: true }) : openMenu()));
+  trigger.addEventListener('click', () => (isOpen() ? close({ refocusTrigger: true }) : open()));
+
+  return { close };
+}
+
+function initMenu({ windowManager, iconManager }) {
+  const trigger = document.getElementById('taskbar-menu-trigger');
+  const panel = document.getElementById('taskbar-menu');
+  if (!trigger || !panel) return;
+
+  const dropdown = createDropdown({
+    trigger,
+    panel,
+    getItems: () => [...panel.querySelectorAll('.taskbar__menu-item')],
+    onToggle: (open) => {
+      panel.hidden = !open;
+    },
+  });
 
   panel.querySelector('[data-action="reset-desktop"]').addEventListener('click', () => {
     windowManager.closeAll();
     iconManager.reset();
-    closeMenu({ refocusTrigger: true });
+    dropdown.close({ refocusTrigger: true });
   });
 
   panel.querySelector('[data-action="close-windows"]').addEventListener('click', () => {
     windowManager.closeAll();
-    closeMenu({ refocusTrigger: true });
+    dropdown.close({ refocusTrigger: true });
+  });
+}
+
+function initSocialMenu() {
+  const trigger = document.getElementById('taskbar-social-trigger');
+  const panel = document.getElementById('taskbar-social');
+  if (!trigger || !panel) return;
+
+  createDropdown({
+    trigger,
+    panel,
+    getItems: () => [...panel.querySelectorAll('.taskbar__social-link')],
   });
 }

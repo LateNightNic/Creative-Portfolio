@@ -94,6 +94,14 @@
   gap: 1.5rem;
 }
 
+.taskbar__social-menu {
+  position: relative;
+}
+
+.taskbar__social-trigger {
+  display: none;
+}
+
 .taskbar__social {
   display: flex;
   align-items: center;
@@ -115,6 +123,10 @@
 .taskbar__social-link img {
   height: 1.25rem;
   width: auto;
+}
+
+.taskbar__social-link-label {
+  display: none;
 }
 
 .taskbar__clock {
@@ -217,7 +229,7 @@
   }
 
   .taskbar__clock {
-    white-space: nowrap;
+    display: none;
   }
 
   .taskbar__menu-trigger {
@@ -225,6 +237,58 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  .taskbar__social-trigger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    width: 2.75rem;
+    height: 2.5rem;
+    cursor: pointer;
+  }
+
+  .taskbar__social-trigger-bar {
+    width: 1.125rem;
+    height: 2px;
+    background: var(--color-light-black);
+  }
+
+  .taskbar__social {
+    display: none;
+  }
+
+  .taskbar__social-trigger[aria-expanded="true"] + .taskbar__social {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    padding: 0.5rem;
+    background: linear-gradient(135deg, var(--color-off-white), var(--color-grey));
+    border-radius: var(--window-radius);
+    box-shadow: var(--window-frame-stroke), var(--window-shadow);
+    z-index: 1;
+  }
+
+  .taskbar__social-link {
+    justify-content: flex-start;
+    gap: 0.75rem;
+    min-width: 8rem;
+    min-height: 2.75rem;
+    padding: 0 0.5rem;
+  }
+
+  .taskbar__social-link-label {
+    display: inline;
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-caps);
+    color: var(--color-light-black);
   }
 
   .desktop {
@@ -235,19 +299,26 @@
   .icon-grid {
     display: grid;
     position: static;
-    grid-template-columns: repeat(2, 9rem);
+    grid-template-columns: repeat(2, minmax(0, 10.5rem));
+    grid-template-rows: none;
     grid-auto-flow: row;
-    gap: 1.5rem 1rem;
+    justify-content: center;
+    gap: 2rem 1.25rem;
+    width: 100%;
   }
 
-  .desktop-icon {
+  .icon-grid .desktop-icon {
+    grid-column: auto;
+    grid-row: auto;
     position: static;
     cursor: pointer;
-    width: 9rem;
+    width: 100%;
   }
 
   .desktop-icon__graphic {
-    width: 8rem;
-    height: 8rem;
+    width: 100%;
+    max-width: 9.5rem;
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
 }

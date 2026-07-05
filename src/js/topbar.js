@@ -22,6 +22,29 @@ export function initTopbar({ windowManager, iconManager }) {
   initMenu({ windowManager, iconManager });
   initSocialMenu();
   initClock();
+  initThemeToggle();
+}
+
+function initThemeToggle() {
+  const btn = document.getElementById('taskbar-theme-toggle');
+  if (!btn) return;
+  const root = document.documentElement;
+
+  const apply = (theme) => {
+    root.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch (e) {}
+    const next = theme === 'dark' ? 'light' : 'dark';
+    btn.textContent = next.toUpperCase();
+    btn.setAttribute('aria-label', `Switch to ${next} theme`);
+  };
+
+  apply(root.getAttribute('data-theme') || 'light');
+
+  btn.addEventListener('click', () => {
+    apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
 }
 
 function createDropdown({ trigger, panel, getItems, onToggle }) {

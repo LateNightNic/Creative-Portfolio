@@ -62,10 +62,11 @@ There is no size above 24px in the locked scale — no hero/display moment has b
 | `--color-off-white` | Off-White | `#FAF9F6` | `rgba(250, 249, 246, 1)` | Primary background (desktop, window content) |
 | `--color-grey` | Grey | `#EFEEEC` | `rgba(239, 238, 236, 1)` | Secondary surface (panels, dividers, placeholder thumbnails) |
 | `--color-light-black` | Light Black | `#1C1F1C` | `rgba(28, 31, 28, 1)` | Foreground (text, icons, borders) |
+| `--color-dark-grey` | Dark Grey | `#2F302F` | `rgb(47, 48, 47)` | Secondary surface in dark mode (alternative to Grey) |
 | `--color-blue` | Blue | `#1D3DD8` | `rgba(29, 61, 216, 1)` | Accent/interactive (hover, focus, links, active states) |
 
 - Semantic colors (success, warning, error) — not yet defined
-- Dark mode — not yet defined
+- Dark mode — implemented via a `[data-theme="dark"]` scope on `:root` (`base.css`) that overrides the palette tokens: `--color-off-white` ↔ `--color-light-black` swap, `--color-grey` → `--color-dark-grey`, `--color-blue` unchanged. Toggle lives in the taskbar between the social links and the clock, persisted via `localStorage`.
 - All colors should be exposed as CSS custom properties on `:root` using the token names above
 
 ### Spacing

@@ -140,13 +140,20 @@
 
 /* ── Scrollbar ─────────────────────────────────────────── */
 
-.window__content,
-.project-overview,
-
-.project-visuals,
-.resume__viewer {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-light-black) transparent;
+/* Firefox has no ::-webkit-scrollbar pseudo-elements, so it needs the
+   standard properties as its only styling option. Chromium/Safari also
+   honor scrollbar-width/scrollbar-color when set, which overrides the
+   ::-webkit-scrollbar-thumb rules below with a flat, non-customizable
+   overlay thumb — so this is scoped to browsers that lack ::-webkit-scrollbar
+   support, letting Chromium/Safari fall through to the custom thumb. */
+@supports not selector(::-webkit-scrollbar) {
+  .window__content,
+  .project-overview,
+  .project-visuals,
+  .resume__viewer {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-grey) transparent;
+  }
 }
 
 .window__content::-webkit-scrollbar,
@@ -168,9 +175,17 @@
 .project-overview::-webkit-scrollbar-thumb,
 .project-visuals::-webkit-scrollbar-thumb,
 .resume__viewer::-webkit-scrollbar-thumb {
-  background: var(--color-off-white);
+  background: linear-gradient(135deg, var(--color-off-white), var(--color-grey));
   border: var(--window-border);
+  border-right: none;
   border-radius: 0.25rem;
+}
+
+.window__content::-webkit-scrollbar-thumb:hover,
+.project-overview::-webkit-scrollbar-thumb:hover,
+.project-visuals::-webkit-scrollbar-thumb:hover,
+.resume__viewer::-webkit-scrollbar-thumb:hover {
+  border-color: var(--color-blue);
 }
 
 /* ── Open animation ────────────────────────────────────── */
